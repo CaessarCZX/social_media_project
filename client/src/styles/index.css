@@ -4,18 +4,140 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --bg-dark-default: #0e0915;
+  --txt-dark-secondary: #0ac4c4;
+}
+
+.App {
+  width: 100%;
+  min-width: 300px;
+  min-height: 100vh;
+}
+
+.full-display {
+  width: 100%;
+  min-height: 100vh;
+}
+
+
+.bg-dark-fix--1 {
+  background-color: var(--bg-dark-default);
+  background-image: url('../assets/bg-dark-violet-02.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+}
+
+/* Stye used in: NotFounded, */
+
+/* Display flex && pos features */
+.flx-w100-ctr {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.inflx-col-ctr {
+  flex-direction: column;
+  align-items: center;
+}
+
+/* For spacing in display flex */
+/* gap from 1 to 5 each unit means 0.5rem = 8px */
+.gap1 {
+  gap: 0.5rem;
+}
+.gap2 {
+  gap: 1rem;
+}
+.gap3 {
+  gap: 1.5rem;
+}
+.gap4 {
+  gap: 2rem;
+}
+.gap5 {
+  gap: 2.5rem;
+}
+
+/* Change to display only */
+.display-flx {
+  display: flex;
+}
+.display-Blk {
+  display: block;
+}
+.display-Inline {
+  display: inline;
+}
+
+/* height features */
+.h100vh {
+  height: 100vh;
+}
+
+
+/* Text or font features */
+
+/* Color */
+.txt-white {
+  color: #fff;
+}
+.txt-sec-dark {
+  color: var(--txt-dark-secondary)
+}
+
+/* Weight */
+.txt-we500 {
+  font-weight: 500;
+}
+.txt-we700 {
+  font-weight: 700;
+}
+
+/* Size */
+.title-big {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.title-huge {
+  font-size: 4.5rem;
+  line-height: 1;
+}
+
+.txt-normal {
+  line-height: 1.2;
+  font-size: 0.8rem;
+}
+.txt-large {
+  line-height: 1;
+  font-size: 1.2rem;
+}
+.txt-1rem {
+  line-height: 1;
+  font-size: 1rem;
+}
+
+/* Styling ads */
+.white-box-1 {
+  padding: 1rem;
+  border: solid 2px #fff;
 }

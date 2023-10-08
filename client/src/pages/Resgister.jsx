@@ -1,4 +1,4 @@
-export function SingUp () {
+export function Register () {
   return (
     <div>Register</div>
   )
