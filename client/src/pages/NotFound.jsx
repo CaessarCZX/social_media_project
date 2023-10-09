@@ -1,17 +1,42 @@
-import { Link } from 'react-router-dom'
-import '../styles/index.css'
+import { LinkS } from '../styled components/LinkS.js'
+import { ContainerDefault, ContainerSection, Text, Title } from '../styled components/SiteStyles.js'
 
 export function NotFound () {
   return (
-    <section className='full-display bg-dark-fix--1 txt-white'>
-      <div className='flx-w100-ctr inflx-col-ctr h100vh gap2'>
-        <h2 className='title-big white-box-1'>Not-Found</h2>
-        <strong className='title-huge'>404</strong>
-        <div className='txt-large txt-we500'>
-          <p className='display-Inline'>Go to homepage </p>
-          <Link className='txt-sec-dark' to='/'> Here </Link>
-        </div>
-      </div>
-    </section>
+    <ContainerSection $darkMode='$darkMode'>
+      <ContainerDefault
+        $height='100vh'
+        $gap='1rem'
+        $txtAlign='center'
+        $enableColumn
+      >
+        <Title
+          $large
+          $enableBox
+          $darkMode='$darkMode'
+        >Not Found
+        </Title>
+        <Title
+          $xtraLarge
+          $darkMode='$darkMode'
+        >404
+        </Title>
+        <article>
+          <Text
+            $size='1.2rem'
+            $weight='500'
+            $enableInline
+            $darkMode='$darkMode'
+          >Go to homepage
+          </Text>
+          <LinkS
+            $size='1.2rem'
+            $darkMode='$darkMode'
+            to='/'
+          >Here
+          </LinkS>
+        </article>
+      </ContainerDefault>
+    </ContainerSection>
   )
 }
