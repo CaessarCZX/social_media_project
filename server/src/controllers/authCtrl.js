@@ -1,7 +1,8 @@
 const Users = require('../models/userModel')
 const bycript = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { authErrors } = require('../utils/errors')
+const { authErrors } = require('../utils/errors') // Message management
+const { authSuccess } = require('../utils/success') //  Message manegement
 
 const authCtrl = {
   register: async (req, res) => {
@@ -43,7 +44,7 @@ const authCtrl = {
 
       // Send JSON response ro client
       res.json({
-        msg: 'registered success',
+        msg: authSuccess.registerSuccess,
         accessToken,
         user: {
           ...newUser._doc,
@@ -58,11 +59,10 @@ const authCtrl = {
     try {
       const { email, password } = req.body
 
-      console.log(req.body)
       // User request, whit related documents { friends:[], following:[] } with Password rejected.
       const currentUser = await Users.findOne({ email })
         .populate('friends following', '-password') // <= Load related documents with .populate by mongoose
-      console.log(currentUser)
+
       if (!currentUser) return res.status(400).json({ msg: authErrors.userNotFound })
 
       const userPassword = currentUser.password
@@ -81,7 +81,7 @@ const authCtrl = {
 
       // Send JSON response ro client
       res.json({
-        msg: 'login success',
+        msg: authSuccess.loginSuccess,
         accessToken,
         user: {
           ...currentUser._doc,
@@ -94,14 +94,32 @@ const authCtrl = {
   },
   logout: async (req, res) => {
     try {
-
+      res.clearCookie('refreshtoken', { path: '/api/refresh_token' })
+      res.json({ msg: authSuccess.logoutSuccess })
     } catch (e) {
       res.status(500).json({ msg: e.message })
     }
   },
   generateAccessToken: async (req, res) => {
     try {
+      const refToken = req.cookies.refreshtoken
+      if (!refToken) return res.status(400).json({ msg: authErrors.userNotLogged })
 
+      jwt.verify(refToken, process.env.REFRESH_TOKEN_SECRET, async (err, result) => {
+        if (err) return res.status(400).json({ msg: authErrors.userNotLogged })
+
+        const user = await Users.findById(result.id).select('-password')
+          .populate('friends following')
+
+        if (!user) return res.status(400).json({ msg: authErrors.userNotFound })
+
+        const accessToken = createAccessToken({ id: result._id })
+
+        res.json({
+          accessToken,
+          user
+        })
+      })
     } catch (e) {
       res.status(500).json({ msg: e.message })
     }
