@@ -26,52 +26,30 @@ export const ContainerSection = styled.section`
 `
 
 export const ContainerDefault = styled.div`
-width: 100%;
-height: ${(props) => props.$height || '350px'};
-display: flex;
-flex-wrap: ${(props) => props.$wrap ? 'wrap' : 'nowrap'};
-flex-direction: row;
-place-content: center;
-align-items: center;
-text-align: ${(props) => props.$txtAlign || 'initial'};
-padding: ${(props) => props.$padding || '1rem'};
-gap: ${(props) => props.$gap || 'none'};
+  width: 100%;
+  height: ${(props) => props.$height || '350px'};
+  display: flex;
+  flex-wrap: ${(props) => props.$wrap ? 'wrap' : 'nowrap'};
+  flex-direction: row;
+  place-content: center;
+  align-items: center;
+  text-align: ${(props) => props.$txtAlign || 'initial'};
+  padding: ${(props) => props.$padding || '1rem'};
+  gap: ${(props) => props.$gap || 'none'};
 
-${(props) => props.$enableColumn && css`
-    flex-direction: column;
-  `}
+  ${(props) => props.$enableColumn && css`
+      flex-direction: column;
+    `}
 `
 
-/*
-  Title for UI
-  prop features available in styled component.
-  <Title $darkMode? > => This component has darkMode disabled by default
-    {
-      font-size: 1.5 rem === 24px,
-      font-weight: 500,
-      font-family: inherit,
-      line-height: 1,
-      color: ['black', 'white' (just on darkMode)],
-      border-color: ['black', 'white' (just on darkMode)],
-      border: none
-    }
+export const ContainerGlassDefault = styled(ContainerDefault)`
+  background-color: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(5px);
+  border-radius: 1rem;
+  border: solid 0.0625rem rgba(255, 255, 255, 0.02);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.04), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+`
 
-    Single-props and changes:
-    - $medium
-    {
-      font-size: 2.5rem,
-    }
-    - $large
-    {
-      font-size: 3.5rem,
-      font-weight: 700
-    }
-    - $xtraLarge
-    {
-      font-size: 4.5rem,
-      font-weight: 700
-    }
-*/
 export const Title = styled.h2`
   font-family: inherit;
   font-size: 1.5rem;
