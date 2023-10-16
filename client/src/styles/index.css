@@ -1,16 +1,11 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  font-family: Inter, sans-serif ,system-ui, system-ui, -apple-system, BlinkMacSystemFont, Avenir, Helvetica, Arial;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-
-  --bg-dark-default: #0e0915;
-  --txt-dark-secondary: #0ac4c4;
 }
 
 * {
