@@ -9,6 +9,7 @@ import {
   DivFlex,
   Input,
   Label,
+  LateralAbsolute,
   SpacerContainer,
   Text,
   Title
@@ -19,6 +20,9 @@ export function Login () {
   return (
     <Div $height='100vh'>{/* < ==== < ====  TODO: REMOVE THIS TAG, IT'S JSUT FOR DEVELOPMENT */}
       <SpacerContainer $relative $isDark={isDark}>
+        <LateralAbsolute $margin='1.5rem'>
+          <LinkS to='/' $isDark={isDark}>Ir a inicio</LinkS>
+        </LateralAbsolute>
         <CenterAbosolute $width='100%' $maxWidth='400px'>
           <Article $pInline='1rem'>
             <Div $txtCenter>

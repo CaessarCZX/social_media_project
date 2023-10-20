@@ -1,8 +1,8 @@
-import { ToggleSlider } from '../components/ToggleSlider.jsx'
+import { ToggleSliderTheme } from '../components/ToggleSliderTheme.jsx'
 import { useTheme } from '../hooks/useTheme.js'
 import LogoPage from '../layout/LogoPage.jsx'
+import { ButtonLink } from '../styled components/Darth-theme-Router-Links.js'
 import {
-  Button,
   Div,
   Footer,
   HeaderFlex,
@@ -26,7 +26,7 @@ export function Landing () {
           </picture>
           <UlFlex $gap='1rem' $aiCenter $wrap>
             <ItemFlex $margin='0 1rem 0 0'>
-              <ToggleSlider id='theme-selector' />
+              <ToggleSliderTheme id='theme-selector' />
             </ItemFlex>
           </UlFlex>
         </HeaderFlex>
@@ -36,8 +36,8 @@ export function Landing () {
               <MainTitle $isDark={isDark}>Conecta con los tuyos</MainTitle>
               <Text $isDark={isDark}>Unete a la resistencia, crea amistades y crece dentro de nuestra red</Text>
               <UlFlex $contCenter $padding='3rem 0 0' $maxWidth='300px'>
-                <Button $isDark={isDark}>Regístrate</Button>
-                <Button $action $margin='0 0 0 1rem' $isDark={isDark}>Inicia sesión</Button>
+                <ButtonLink to='/register' $isDark={isDark}>Regístrate</ButtonLink>
+                <ButtonLink to='/login' $action $margin='0 0 0 1rem' $isDark={isDark}>Inicia sesión</ButtonLink>
               </UlFlex>
             </Div>
           </SectionMain>

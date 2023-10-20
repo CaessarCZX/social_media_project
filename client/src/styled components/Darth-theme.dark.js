@@ -41,7 +41,7 @@ const DefaultFeaturesContainers = (props) => css`
   ${props.$relative && css`position: relative;`}
   ${props.$absolute && css`position: absolute;`}
 `
-const Margins = (props) => css`
+export const Margins = (props) => css`
   ${props.$margin && css`margin: ${props.$margin};`}
   ${props.$mBlock && css`margin-block: ${props.$mBlock};`}
   ${props.$mInline && css`margin-inline: ${props.$mInline};`}
@@ -409,6 +409,12 @@ export const CenterAbosolute = styled(Div)`
   transform: translate(-50%, -50%);
 `
 
+export const LateralAbsolute = styled(Div)`
+  position: absolute;
+  top: 0;
+  left: 0;
+`
+
 export const ItemBlock = styled(Li)`
   display: inline-block;
 `
@@ -425,8 +431,28 @@ export const SpacerContainer = styled(Section)`
   background-repeat: no-repeat;
 `
 
-export const TestDivBg = styled(Div)`
+export const AsideLateral = styled.aside` //
+  width: 30vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
   background-color: red;
+
+  @media screen and (width <= 1000px) {
+    & {
+      width:50vw;
+    }
+  }
+  @media screen and (width <= 700px) {
+    & {
+      width:100vw;
+    }
+  }
+
+  ${(props) => props.$active && css`
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.7);
+  `}
 `
 
 // ----------- LOGO STYLE -----------------
