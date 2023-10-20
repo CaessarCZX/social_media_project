@@ -5,12 +5,17 @@ import {
   LogoMain
 } from '../styled components/Darth-theme.dark'
 
-export default function LogoPage () {
+export default function LogoPage ({ ...props }) {
   const { isDark } = useTheme()
 
   const handleLogo = isDark ? logoDark : logoLight
 
   return (
-    <LogoMain src={handleLogo} alt='GeekNetwork log' title='GeekNetwork' />
+    <LogoMain
+      {...props}
+      src={handleLogo}
+      alt='GeekNetwork log'
+      title='GeekNetwork'
+    />
   )
 }

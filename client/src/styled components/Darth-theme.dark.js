@@ -1,13 +1,15 @@
 import styled, { css } from 'styled-components'
-import darkBg from '../assets/bg-dark-bicolor-02.svg'
-import lightBg from '../assets/bg-white-tricolor-01.svg'
+import darkBg from '../assets/bg-dark.svg'
+import lightBg from '../assets/bg-light.svg'
+import bgSpacesDark from '../assets/bg-spaces-dark.svg'
 import {
   BUTTONS as btn,
   DARTH_THEME_DARK_MODE as dark,
   FONT_SETTINGS as font,
   TRANSPARENCIES as glass,
   INPUTS as input,
-  DARTH_THEME_LIGHT_MODE as light
+  DARTH_THEME_LIGHT_MODE as light,
+  TOGGLE as toggle
 } from './Darth-theme.var.js'
 
 // GLOBAL STYLES FOR CONTAINER
@@ -89,16 +91,34 @@ export const MainTitle = styled.h1`
   /* Just Large title */
   font-size: ${font.titleLarge.size};
   font-weight: ${font.titleLarge.weight};
-  color: ${(props) => (props.$isDark ? dark.titlePrimary : '#0e0e0e')};
   line-height: 1;
   padding-bottom: 1rem;
+  color: #0e0e0e;
+
+  ${(props) => props.$isDark && css`
+    color: ${font.titleDegree.dark.color};
+    background-image: ${font.titleDegree.dark.backgroundImage};
+    background-clip: ${font.titleDegree.dark.backgroundClip};
+    -webkit-background-clip: ${font.titleDegree.dark.webkitBackgroundClip};
+    -webkit-text-fill-color: ${font.titleDegree.dark.webkitTextFillColor};
+  `}
+
 `
 export const Title = styled.h2`
   /* Default Large title */
   font-size: ${font.titleLarge.size};
   font-weight: ${font.titleLarge.weight};
   line-height: ${font.titleLarge.lineHeight};
-  color: ${(props) => (props.$isDark ? dark.titlePrimary : '#0e0e0e')};
+  padding-bottom: 1rem;
+  color: #0e0e0e;
+
+  ${(props) => props.$isDark && css`
+    color: ${font.titleDegree.dark.color};
+    background-image: ${font.titleDegree.dark.backgroundImage};
+    background-clip: ${font.titleDegree.dark.backgroundClip};
+    -webkit-background-clip: ${font.titleDegree.dark.webkitBackgroundClip};
+    -webkit-text-fill-color: ${font.titleDegree.dark.webkitTextFillColor};
+  `}
 
   /* Medium title */
   ${(props) => props.$medium && css`
@@ -216,6 +236,11 @@ export const Input = styled.input`
   }
   
   color: ${(props) => (props.$isDark ? dark.textHighlight : '#0e0e0e')};
+
+  &::placeholder {
+    color: ${dark.textSeconday};
+    letter-spacing: 0.5px;
+  }
 `
 export const Label = styled.label`
   ${Margins}
@@ -225,6 +250,16 @@ export const Label = styled.label`
   line-height: ${input.label.lineHeight};
   margin: ${input.label.margin};
   color: ${(props) => (props.$isDark ? dark.titlePrimary : '#0e0e0e')};
+
+  ${(props) => props.$required && css`
+  position: relative;
+
+    &::after{
+      content: '*';
+      margin-left: 0.3rem;
+      color: red;
+    }
+  `}
 `
 
 // BUTTON
@@ -367,13 +402,70 @@ export const SectionMain = styled(Section)`
   margin: 0 auto;
 `
 
+export const CenterAbosolute = styled(Div)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`
+
 export const ItemBlock = styled(Li)`
   display: inline-block;
+`
+
+// SPECIFIC CONTAINER FLOCK FOR COMPONENT
+export const SpacerContainer = styled(Section)`
+  width: 100%;
+  height: 100%;
+  background-color: ${(props) => props.$isDark ? dark.backgroundPrimary : light.backgroundPrimary};
+  background-image: url(${(props) => (props.$isDark ? bgSpacesDark : lightBg)});
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+`
+
+export const TestDivBg = styled(Div)`
+  background-color: red;
 `
 
 // ----------- LOGO STYLE -----------------
 export const LogoMain = styled.img`
   max-width: 100px;
+
+  ${(props) => props.$large && css` max-width: 200px; `}
+`
+
+// ------------ TOGGLE STYLE ---------------
+export const Slider = styled.label`
+  width: ${toggle.generaLabel.width};
+  position: ${toggle.generaLabel.position};
+  height: ${toggle.generaLabel.height};
+  border-radius: ${toggle.generaLabel.borderRadius};
+  background-color: ${toggle.dark.backgroundColor};
+  box-shadow: ${toggle.generaLabel.boxShadow};
+  transition: ${toggle.generaLabel.transition};
+  cursor: ${toggle.generaLabel.cursor};
+
+  &::before {
+    content: ${toggle.generaLabel.before.content};
+    position: ${toggle.generaLabel.before.position};
+    inset: ${toggle.generaLabel.before.inset};
+    width: ${toggle.generaLabel.before.width};
+    height: ${toggle.generaLabel.before.height};
+    border-radius: ${toggle.generaLabel.before.borderRadius};
+    background-color: ${toggle.generaLabel.before.backgroundColor};
+    transform: ${toggle.generaLabel.before.transform};
+    transition: ${toggle.generaLabel.before.transition};
+  }
+`
+
+export const ControlSlider = styled.input`
+  display: ${toggle.ganeralInput.display};
+
+  &:checked + label::before {
+    transform: ${toggle.ganeralInput.selfElmenteCheckedAndSibligLabel}
+  }
 `
 
 // ------------- FOOTER --------------------

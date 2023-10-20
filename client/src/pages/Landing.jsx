@@ -1,3 +1,4 @@
+import { ToggleSlider } from '../components/ToggleSlider.jsx'
 import { useTheme } from '../hooks/useTheme.js'
 import LogoPage from '../layout/LogoPage.jsx'
 import {
@@ -14,7 +15,7 @@ import {
 } from '../styled components/Darth-theme.dark'
 
 export function Landing () {
-  const { isDark, toggleTheme } = useTheme()
+  const { isDark } = useTheme()
 
   return (
     <>
@@ -24,14 +25,8 @@ export function Landing () {
             <LogoPage />
           </picture>
           <UlFlex $gap='1rem' $aiCenter $wrap>
-            <ItemFlex>
-              <Button $isDark={isDark}>Hola</Button>
-            </ItemFlex>
-            <ItemFlex>
-              <Button $isDark={isDark}>Como?</Button>
-            </ItemFlex>
-            <ItemFlex>
-              <Button onClick={toggleTheme} $action>Mode</Button>
+            <ItemFlex $margin='0 1rem 0 0'>
+              <ToggleSlider id='theme-selector' />
             </ItemFlex>
           </UlFlex>
         </HeaderFlex>

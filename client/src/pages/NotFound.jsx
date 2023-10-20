@@ -1,4 +1,4 @@
-import { LinkS } from '../styled components/LinkS.js'
+import { LinkS } from '../styled components/Darth-theme-Router-Links.js'
 import { ContainerDefault, ContainerSection, Text, Title } from '../styled components/SiteStyles.js'
 
 export function NotFound () {

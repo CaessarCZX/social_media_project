@@ -56,6 +56,16 @@ export const FONT_SETTINGS = Object.freeze({
     element: 'h2',
     lineHeight: '1.5'
   },
+  titleDegree: {
+    light: 'none',
+    dark: {
+      color: 'transparent',
+      backgroundImage: 'radial-gradient(circle, #d7dde7 0%, rgba(148,163,184,1) 100%);',
+      backgroundClip: 'text',
+      webkitBackgroundClip: 'text',
+      webkitTextFillColor: 'transparent'
+    }
+  },
   subtitleHighlight: {
     size: '16px',
     weight: '500',
@@ -116,6 +126,39 @@ export const FONT_SETTINGS = Object.freeze({
   }
 })
 
+export const TOGGLE = Object.freeze({
+  generaLabel: {
+    width: '2.8rem',
+    position: 'relative',
+    height: '1.5rem',
+    borderRadius: '100vh',
+    boxShadow: 'inset 0 0 4px 2px rgba(0, 0, 0, 0.3)',
+    transition: `background-color ${DARTH_THEME_DARK_MODE.transitionDuration.short} ease-out`,
+    cursor: 'pointer',
+    before: {
+      content: '""',
+      position: 'absolute',
+      inset: '0',
+      width: '1.5rem',
+      height: '1.5rem',
+      borderRadius: '100vh',
+      backgroundColor: '#fff',
+      transform: 'scale(0.85)',
+      transition: `transform  ${DARTH_THEME_DARK_MODE.transitionDuration.short} ease-in-out`
+    }
+  },
+  dark: {
+    backgroundColor: DARTH_THEME_DARK_MODE.choosenElement
+  },
+  light: {
+    backgroundColor: DARTH_THEME_DARK_MODE.choosenElement
+  },
+  ganeralInput: {
+    display: 'none',
+    selfElmenteCheckedAndSibligLabel: 'scale(0.85) translate(25px);' // Just for transform property
+  }
+})
+
 export const INPUTS = Object.freeze({
   general: {
     width: '100%',
@@ -158,7 +201,7 @@ export const BUTTONS = Object.freeze({
     borderColor: 'transparent',
     borderWidth: '0.0625rem',
     transition:
-    `background-color
+      `background-color
     ${DARTH_THEME_DARK_MODE.transitionDuration.short}
     ease-in`,
     cursor: 'pointer'
