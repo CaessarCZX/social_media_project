@@ -462,6 +462,11 @@ export const LogoMain = styled.img`
   ${(props) => props.$large && css` max-width: 200px; `}
 `
 
+export const HugeTitle = styled(Title)`
+  padding: 0;
+  font-size: 15vh;
+`
+
 // ------------ TOGGLE STYLE ---------------
 export const Slider = styled.label`
   width: ${toggle.generaLabel.width};

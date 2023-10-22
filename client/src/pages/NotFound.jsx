@@ -1,42 +1,44 @@
+import { useTheme } from '../hooks/useTheme.js'
+import LogoPage from '../layout/LogoPage.jsx'
 import { LinkS } from '../styled components/Darth-theme-Router-Links.js'
-import { ContainerDefault, ContainerSection, Text, Title } from '../styled components/SiteStyles.js'
+import {
+  Article,
+  CenterAbosolute,
+  ContainerAside,
+  DivFlex,
+  HugeTitle,
+  LateralAbsolute,
+  Page,
+  SpacerContainer,
+  Text,
+  Title
+} from '../styled components/Darth-theme.dark.js'
 
 export function NotFound () {
+  const { isDark } = useTheme()
+
   return (
-    <ContainerSection $darkMode='$darkMode'>
-      <ContainerDefault
-        $height='100vh'
-        $gap='1rem'
-        $txtAlign='center'
-        $enableColumn
-      >
-        <Title
-          $large
-          $enableBox
-          $darkMode='$darkMode'
-        >Not Found
-        </Title>
-        <Title
-          $xtraLarge
-          $darkMode='$darkMode'
-        >404
-        </Title>
-        <article>
-          <Text
-            $size='1.2rem'
-            $weight='500'
-            $enableInline
-            $darkMode='$darkMode'
-          >Go to homepage
-          </Text>
-          <LinkS
-            $size='1.2rem'
-            $darkMode='$darkMode'
-            to='/'
-          >Here
-          </LinkS>
-        </article>
-      </ContainerDefault>
-    </ContainerSection>
+    <Page $height='100vh'>
+      <SpacerContainer $isDark={isDark}>
+        <LateralAbsolute>
+          <LogoPage />
+        </LateralAbsolute>
+        <CenterAbosolute $maxWidth='500px'>
+          <Article $txtCenter>
+            <ContainerAside>
+              <HugeTitle $isDark={isDark}>404</HugeTitle>
+            </ContainerAside>
+            <Title $isDark={isDark}>Not Found</Title>
+            <Text $isDark={isDark}>La página que intentas buscar no existe</Text>
+            <DivFlex $gap='0.3rem' $jCenter $margin='1.2rem 0 0'>
+              <Text $medium $isDark={isDark}>Haz click </Text>
+              <LinkS to='/' $medium $action>aquí</LinkS>
+              <Text $medium $isDark={isDark}>para regresar al</Text>
+              <LinkS to='/' $medium $action>Home</LinkS>
+            </DivFlex>
+          </Article>
+        </CenterAbosolute>
+      </SpacerContainer>
+    </Page>
   )
 }
