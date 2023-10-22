@@ -189,10 +189,13 @@ export const Text = styled.p`
 
 export const SmallText = styled.span`
   /* Default Small title */
+  display: ${font.txtSmall.display};
   font-size: ${font.txtSmall.size};
   font-weight: ${font.txtSmall.weight};
   line-height: ${font.txtSmall.lineHeight};
   color: ${(props) => (props.$isDark ? dark.textSeconday : '#0e0e0e')};
+  ${(props) => props.$width && css` width: ${props.$width};`}
+  ${(props) => props.$clickable && css` cursor: pointer;`}
 
   /* Bold mode */
   ${(props) => props.$bold && css`
@@ -413,6 +416,7 @@ export const LateralAbsolute = styled(Div)`
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 2;
 `
 
 export const ItemBlock = styled(Li)`
@@ -426,7 +430,7 @@ export const SpacerContainer = styled(Section)`
   background-color: ${(props) => props.$isDark ? dark.backgroundPrimary : light.backgroundPrimary};
   background-image: url(${(props) => (props.$isDark ? bgSpacesDark : lightBg)});
   background-position: center;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */ //Desactivate by performance
   background-size: cover;
   background-repeat: no-repeat;
 `

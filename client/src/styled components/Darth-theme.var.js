@@ -116,7 +116,8 @@ export const FONT_SETTINGS = Object.freeze({
     size: '12px',
     weight: '300',
     element: 'span',
-    lineHeight: '1.5'
+    lineHeight: '1.5',
+    display: 'inline-block'
   },
   txtSmallBold: {
     size: '12px',
