@@ -7,7 +7,7 @@ const { authSuccess } = require('../utils/success') //  Message manegement
 const authCtrl = {
   register: async (req, res) => {
     try {
-      const { fullname, username, email, password, gender } = req.body
+      const { firstname, lastname, username, email, password } = req.body
 
       const newUserName = username.toLowerCase().replace(/ /g, '')
 
@@ -22,11 +22,11 @@ const authCtrl = {
       const passwordHash = await bycript.hash(password, 13)
 
       const newUser = new Users({
-        fullname,
+        firstname,
+        lastname,
         username: newUserName,
         email,
-        password: passwordHash,
-        gender
+        password: passwordHash
       })
 
       const accessToken = createAccessToken({ id: newUser._id })
