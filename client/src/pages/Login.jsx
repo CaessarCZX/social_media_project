@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useTheme } from '../hooks/useTheme.js'
 import LogoPage from '../layout/LogoPage.jsx'
+import { login } from '../redux/actions/authActions.js'
 import { LinkS } from '../styled components/Darth-theme-Router-Links.js'
 import {
   Article,
@@ -23,13 +25,19 @@ export function Login () {
   const [password, setPassword] = useState('')
   // Show password feature
   const [showpass, setShowpass] = useState(false)
-
   // Theme
   const { isDark } = useTheme()
+  // Redux
+  const dispatch = useDispatch()
 
   // Submit form data
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
+    const user = await {
+      email,
+      password
+    }
+    dispatch(login(user))
   }
 
   return (
@@ -52,7 +60,7 @@ export function Login () {
                 <Input
                   type='text'
                   value={email}
-                  onChange={(event) => setEmail(event.target.email)}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder='user@mail.com'
                   $isDark={isDark}
                 />
@@ -73,7 +81,7 @@ export function Login () {
                 <Input
                   type={showpass ? 'type' : 'password'}
                   value={password}
-                  onChange={(event) => setPassword(event.target.password)}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder='pass...'
                   $isDark={isDark}
                 />

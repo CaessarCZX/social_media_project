@@ -55,7 +55,7 @@ export function Register () {
                   <Input
                     type='text'
                     value={firstname}
-                    onChange={(event) => setFirstname(event.target.firstname)}
+                    onChange={(event) => setFirstname(event.target.value)}
                     placeholder='Ej: Tony...'
                     minLength='5'
                     maxLength='50'
@@ -67,7 +67,7 @@ export function Register () {
                   <Input
                     type='text'
                     value={lastname}
-                    onChange={(event) => setLastname(event.target.lastname)}
+                    onChange={(event) => setLastname(event.target.value)}
                     placeholder='Ej: Cayetano...'
                     minLength='5'
                     maxLength='50'
@@ -80,7 +80,7 @@ export function Register () {
                 <Input
                   type='text'
                   value={username}
-                  onChange={(event) => setUsername(event.target.username)}
+                  onChange={(event) => setUsername(event.target.value)}
                   placeholder='Ej: inSamuel77'
                   minLength='5'
                   maxLength='25'
@@ -92,7 +92,7 @@ export function Register () {
                 <Input
                   type='text'
                   value={email}
-                  onChange={(event) => setEmail(event.target.email)}
+                  onChange={(event) => setEmail(event.target.value)}
                   placeholder='alguien@mail.com'
                   minLength='10'
                   maxLength='50'
@@ -115,7 +115,7 @@ export function Register () {
                 <Input
                   type={showpass ? 'type' : 'password'}
                   value={password}
-                  onChange={(event) => setPassword(event.target.password)}
+                  onChange={(event) => setPassword(event.target.value)}
                   placeholder='Ej: miContraseña'
                   minLength='8'
                   maxLength='25'
@@ -138,7 +138,7 @@ export function Register () {
                 <Input
                   type={showOfPass ? 'type' : 'password'}
                   value={confirmPassword}
-                  onChange={(event) => setConfirmPassword(event.target.confirmPassword)}
+                  onChange={(event) => setConfirmPassword(event.target.value)}
                   placeholder='Ej: miContraseña'
                   minLength='8'
                   maxLength='25'
