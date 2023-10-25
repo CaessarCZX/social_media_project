@@ -7,6 +7,7 @@ export const TYPES = {
 
 export const login = (credentialAccess) => async (dispatch) => {
   try {
+    // Dispatcher for state data
     dispatch({
       type: ALERT_TYPES.ALERT,
       payload: {
@@ -14,6 +15,7 @@ export const login = (credentialAccess) => async (dispatch) => {
       }
     })
 
+    // Get user data from back-end
     const { data } = await postDataApi('login', credentialAccess)
     dispatch({
       type: TYPES.AUTH,

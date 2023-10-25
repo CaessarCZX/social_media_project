@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { AlertSystem } from './components/AlertSystem'
 import { Landing } from './pages/Landing'
 import { Login } from './pages/Login'
 import { NotFound } from './pages/NotFound.jsx'
@@ -9,6 +10,7 @@ function App () {
   return (
     <div className='App'>
       <BrowserRouter>
+        <AlertSystem />
         <Routes>
           <Route index element={<Landing />} />
           <Route path='/landingPage' element={<Landing />} />
