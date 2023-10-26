@@ -43,3 +43,27 @@ export const login = (credentialAccess) => async (dispatch) => {
     })
   }
 }
+
+export const refreshToken = () => async (dispatch) => {
+  const login = localStorage.getItem('login')
+
+  if (login) {
+    dispatch({
+      type: ALERT_TYPES.ALERT,
+      payload: {
+        loading: true
+      }
+    })
+  }
+
+  try {
+    const res = await postDataApi('refresh_token')
+  } catch (err) {
+    dispatch({
+      type: ALERT_TYPES.ALERT,
+      payload: {
+        error: err.response.data.msg
+      }
+    })
+  }
+}
