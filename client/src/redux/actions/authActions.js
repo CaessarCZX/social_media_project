@@ -46,7 +46,6 @@ export const login = (credentialAccess) => async (dispatch) => {
 
 export const refreshToken = () => async (dispatch) => {
   const login = localStorage.getItem('login')
-
   if (login) {
     dispatch({
       type: ALERT_TYPES.ALERT,
@@ -54,16 +53,17 @@ export const refreshToken = () => async (dispatch) => {
         loading: true
       }
     })
-  }
 
-  try {
-    const res = await postDataApi('refresh_token')
-  } catch (err) {
-    dispatch({
-      type: ALERT_TYPES.ALERT,
-      payload: {
-        error: err.response.data.msg
-      }
-    })
+    try {
+      const res = await postDataApi('refresh_token')
+      console.trace(res)
+    } catch (err) {
+      dispatch({
+        type: ALERT_TYPES.ALERT,
+        payload: {
+          error: err.response.data.msg
+        }
+      })
+    }
   }
 }

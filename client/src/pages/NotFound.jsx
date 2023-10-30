@@ -4,7 +4,7 @@ import { LinkS } from '../styled components/Darth-theme-Router-Links.js'
 import {
   Article,
   CenterAbosolute,
-  ContainerAside,
+  ContainerArticle,
   DivFlex,
   HugeTitle,
   LateralAbsolute,
@@ -25,9 +25,9 @@ export function NotFound () {
         </LateralAbsolute>
         <CenterAbosolute $maxWidth='500px'>
           <Article $txtCenter>
-            <ContainerAside>
+            <ContainerArticle>
               <HugeTitle $isDark={isDark}>404</HugeTitle>
-            </ContainerAside>
+            </ContainerArticle>
             <Title $isDark={isDark}>Not Found</Title>
             <Text $isDark={isDark}>La página que intentas buscar no existe</Text>
             <DivFlex $gap='0.3rem' $jCenter $margin='1.2rem 0 0'>

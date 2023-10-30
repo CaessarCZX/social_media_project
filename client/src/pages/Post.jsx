@@ -1,45 +1,18 @@
 import { useTheme } from '../hooks/useTheme'
 import {
-  Button,
-  ContainerAside,
-  Div,
-  Input,
-  ItemFlex,
-  Label,
-  MicroSubtitle,
-  SectionFull,
-  SmallText,
-  Subtitle,
-  SubtitleHighlight,
-  UlFlex
+  ContainerArticle,
+  SectionFull
 } from '../styled components/Darth-theme.dark'
 
 export function Post () {
-  const { isDark, toggleTheme } = useTheme()
+  const { isDark } = useTheme()
 
   return (
     <>
       <SectionFull $enableBg $isDark={isDark}>
-        <ContainerAside>
-          <Div $txtCenter>
-            <Button onClick={toggleTheme} $isDark={isDark}>Mode</Button>
-          </Div>
-          <SubtitleHighlight>HOLA MUNDO</SubtitleHighlight>
-          <Subtitle $isDark={isDark}>GG</Subtitle>
-          <UlFlex $gap='1.5rem' $height='7rem' $wrap $jAround>
-            <ItemFlex $aiCenter>
-              <MicroSubtitle $isDark={isDark}>Rivers</MicroSubtitle>
-            </ItemFlex>
-            <ItemFlex $asEnd $margin='0 0 1rem'>
-              <SmallText $bold $isDark={isDark}>Aldo</SmallText>
-            </ItemFlex>
-          </UlFlex>
-          <Div $mBlock='1.5rem'>
-            <Label $isDark={isDark}>Ingresa texto</Label>
-            <Input $isDark={isDark} />
-          </Div>
-          <Button $action>Click</Button>
-        </ContainerAside>
+        <ContainerArticle $width='100%' $height='100px' $padding='1.5rem'>
+          <h1>Example</h1>
+        </ContainerArticle>
       </SectionFull>
     </>
   )

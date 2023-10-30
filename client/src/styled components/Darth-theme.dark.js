@@ -203,19 +203,6 @@ export const SmallText = styled.span`
   `}
 `
 
-// -------------------------
-// Container Predefinied
-// -------------------------
-export const ContainerAside = styled.aside`
-  width: 30vw;
-  height: 100%;
-  max-height: 700px;
-  min-width: 300px;
-  padding: 1.5rem;
-  
- ${DarthSense}
-`
-
 // INPUTS
 export const Input = styled.input`
   ${Margins}
@@ -457,6 +444,12 @@ export const AsideLateral = styled.aside` //
   ${(props) => props.$active && css`
     box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.7);
   `}
+`
+// -------------------------
+// Container Predefinied
+// -------------------------
+export const ContainerArticle = styled(Article)`
+ ${DarthSense}
 `
 
 // ----------- LOGO STYLE -----------------

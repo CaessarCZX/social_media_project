@@ -102,7 +102,9 @@ const authCtrl = {
   },
   generateAccessToken: async (req, res) => {
     try {
-      const refToken = req.cookies.refreshtoken
+      const refToken = await req.cookies?.refreshtoken
+      console.log(req.cookies)
+
       if (!refToken) return res.status(400).json({ msg: authErrors.userNotLogged })
 
       jwt.verify(refToken, process.env.REFRESH_TOKEN_SECRET, async (err, result) => {
