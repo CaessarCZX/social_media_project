@@ -8,8 +8,18 @@ const authRouter = require('./src/routers/authRouter')
 // Initialize app
 const app = express()
 
+/*
+  Just for develop
+  Configuration credentials XMLHttp request by GeekNetwork in development
+  !IMPORTAN: Don't forget set the configuration for origin request.
+*/
+const corsOptions = {
+  origin: 'http://localhost:5173',
+  credentials: true
+}
+
 app.use(express.json()) // for body parsing
-app.use(cors())
+app.use(cors(corsOptions)) // for cors config
 app.use(cookieparser())
 
 // Routes

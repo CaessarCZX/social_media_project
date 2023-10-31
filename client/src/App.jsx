@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AlertSystem } from './components/AlertSystem'
 import { Home } from './pages/Home.jsx'
@@ -7,10 +8,17 @@ import { Login } from './pages/Login'
 import { NotFound } from './pages/NotFound.jsx'
 import { Post } from './pages/Post.jsx'
 import { Register } from './pages/Resgister.jsx'
+import { refreshToken } from './redux/actions/authActions'
 
 function App () {
   const auth = useSelector(state => state.auth)
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(
+      refreshToken()
+    )
+  }, [auth, dispatch])
 
   return (
     <div className='App'>

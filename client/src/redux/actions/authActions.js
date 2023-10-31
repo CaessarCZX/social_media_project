@@ -56,7 +56,7 @@ export const refreshToken = () => async (dispatch) => {
 
     try {
       const res = await postDataApi('refresh_token')
-      console.trace(res)
+      console.log(res)
     } catch (err) {
       dispatch({
         type: ALERT_TYPES.ALERT,
