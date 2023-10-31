@@ -55,8 +55,21 @@ export const refreshToken = () => async (dispatch) => {
     })
 
     try {
-      const res = await postDataApi('refresh_token')
-      console.log(res)
+      const { data } = await postDataApi('refresh_token')
+      dispatch({
+        type: TYPES.AUTH,
+        payload: {
+          token: data.accessToken,
+          user: data.user
+        }
+      })
+
+      dispatch({
+        type: ALERT_TYPES.ALERT,
+        payload: {
+          success: data.msg
+        }
+      })
     } catch (err) {
       dispatch({
         type: ALERT_TYPES.ALERT,

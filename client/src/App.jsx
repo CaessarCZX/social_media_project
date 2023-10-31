@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AlertSystem } from './components/AlertSystem'
-import { Home } from './pages/Home.jsx'
+// import { Home } from './pages/Home.jsx'
 import { Landing } from './pages/Landing'
 import { Login } from './pages/Login'
 import { NotFound } from './pages/NotFound.jsx'
@@ -18,15 +18,15 @@ function App () {
     dispatch(
       refreshToken()
     )
-  }, [auth, dispatch])
+  }, [dispatch])
 
   return (
     <div className='App'>
       <BrowserRouter>
         <AlertSystem />
         <Routes>
-          <Route index element={auth.token ? <Home /> : <Login />} />
-          {/* <Route index element={<Landing />} /> */}
+          {/* <Route index element={auth.token ? <Home /> : <Login />} /> */}
+          <Route index element={<Landing />} />
           <Route path='/landingPage' element={<Landing />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
