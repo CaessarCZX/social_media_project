@@ -20,9 +20,6 @@ import {
 } from '../styled components/Darth-theme.dark'
 
 export function Login () {
-  // Autentication keys
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   // Show password feature
   const [showpass, setShowpass] = useState(false)
   // Theme
@@ -33,10 +30,8 @@ export function Login () {
   // Submit form data
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const user = await {
-      email,
-      password
-    }
+    const entries = new window.FormData(event.target)
+    const user = Object.fromEntries(entries)
     dispatch(login(user))
   }
 
@@ -58,9 +53,8 @@ export function Login () {
               <Div $mBlock='1rem'>
                 <Label $isDark={isDark}>Email</Label>
                 <Input
-                  type='text'
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  type='email'
+                  name='email'
                   placeholder='user@mail.com'
                   $isDark={isDark}
                 />
@@ -80,8 +74,7 @@ export function Login () {
                 </DivFlex>
                 <Input
                   type={showpass ? 'type' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  name='password'
                   placeholder='pass...'
                   $isDark={isDark}
                 />

@@ -14,12 +14,6 @@ import {
 } from '../styled components/Darth-theme.dark.js'
 
 export function Register () {
-  // Input data
-  const [firstname, setFirstname] = useState('')
-  const [lastname, setLastname] = useState('')
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   // Confirmation
   const [confirmPassword, setConfirmPassword] = useState('')
   // Show pass feature
@@ -32,6 +26,9 @@ export function Register () {
   // Subtit form data
   const handleSubmit = (event) => {
     event.preventDefault()
+    const entries = new window.FormData(event.target)
+    const { firstname, lastname, username, email, password } = Object.fromEntries(entries)
+    console.log({ firstname, lastname, username, email, password })
   }
 
   return (
@@ -54,8 +51,7 @@ export function Register () {
                   <Label $required $isDark={isDark}>Nombre</Label>
                   <Input
                     type='text'
-                    value={firstname}
-                    onChange={(event) => setFirstname(event.target.value)}
+                    name='firstname'
                     placeholder='Ej: Tony...'
                     minLength='5'
                     maxLength='50'
@@ -66,8 +62,7 @@ export function Register () {
                   <Label $required $isDark={isDark}>Apellidos</Label>
                   <Input
                     type='text'
-                    value={lastname}
-                    onChange={(event) => setLastname(event.target.value)}
+                    name='lastname'
                     placeholder='Ej: Cayetano...'
                     minLength='5'
                     maxLength='50'
@@ -79,8 +74,7 @@ export function Register () {
                 <Label $required $isDark={isDark}>Nombre de usuario</Label>
                 <Input
                   type='text'
-                  value={username}
-                  onChange={(event) => setUsername(event.target.value)}
+                  name='username'
                   placeholder='Ej: inSamuel77'
                   minLength='5'
                   maxLength='25'
@@ -91,8 +85,7 @@ export function Register () {
                 <Label $required $isDark={isDark}>Email</Label>
                 <Input
                   type='text'
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
+                  name='email'
                   placeholder='alguien@mail.com'
                   minLength='10'
                   maxLength='50'
@@ -114,8 +107,7 @@ export function Register () {
                 </DivFlex>
                 <Input
                   type={showpass ? 'type' : 'password'}
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
+                  name='password'
                   placeholder='Ej: miContraseña'
                   minLength='8'
                   maxLength='25'
