@@ -12,7 +12,7 @@ import {
   SpacerContainer,
   Text,
   Title
-} from '../styled components/Darth-theme.dark.js'
+} from '../styled components/Darth-theme.js'
 
 export function NotFound () {
   const { isDark } = useTheme()

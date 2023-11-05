@@ -13,7 +13,7 @@ import {
   SectionMain,
   Text,
   UlFlex
-} from '../styled components/Darth-theme.dark'
+} from '../styled components/Darth-theme.js'
 
 export function Landing () {
   // Theme

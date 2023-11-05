@@ -2,7 +2,7 @@ import { useTheme } from '../hooks/useTheme'
 import {
   ContainerArticle,
   SectionFull
-} from '../styled components/Darth-theme.dark'
+} from '../styled components/Darth-theme.js'
 
 export function Post () {
   const { isDark } = useTheme()

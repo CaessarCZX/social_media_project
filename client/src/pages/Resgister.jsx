@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+// import { useDispatch } from 'react-redux'
 import { useLoginRedirect } from '../hooks/useLoginRedirect.js'
 import { useTheme } from '../hooks/useTheme.js'
 import LogoPage from '../layout/LogoPage.jsx'
+// import { manageDataForm } from '../services/login/index.js'
 import { LinkS } from '../styled components/Darth-theme-Router-Links.js'
 import {
   Article,
@@ -12,28 +14,40 @@ import {
   SpacerContainer,
   Text,
   Title
-} from '../styled components/Darth-theme.dark.js'
+} from '../styled components/Darth-theme.js'
 
 export function Register () {
-  // Confirmation
+  // Theme
+  const { isDark } = useTheme()
+  // Redux
+  // const dispatch = useDispatch()
+  // password matching
+  const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [isMatchPass, setIsMetchPass] = useState(true)
 
   // Show pass feature
   const [showpass, setShowpass] = useState(false)
   const [showOfPass, setShowOfPass] = useState(false)
 
-  // Theme
-  const { isDark } = useTheme()
-
   // Verify if the user is autenticated
   useLoginRedirect()
+
+  // Verify if password is matching
+  useEffect(
+    () => {
+
+    }, [isMatchPass]
+  )
 
   // Subtit form data
   const handleSubmit = (event) => {
     event.preventDefault()
     const entries = new window.FormData(event.target)
-    const { firstname, lastname, username, email, password } = Object.fromEntries(entries)
-    console.log({ firstname, lastname, username, email, password })
+    const userData = Object.fromEntries(entries)
+    console.log(userData)
+    // const res = manageDataForm(userData)
+    // dispatch()
   }
 
   return (
@@ -112,7 +126,9 @@ export function Register () {
                 </DivFlex>
                 <Input
                   type={showpass ? 'type' : 'password'}
-                  name='password'
+                  // name='password'
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder='Ej: miContraseña'
                   minLength='8'
                   maxLength='25'
@@ -134,8 +150,9 @@ export function Register () {
                 </DivFlex>
                 <Input
                   type={showOfPass ? 'type' : 'password'}
+                  // name='confirmPassword'
                   value={confirmPassword}
-                  onChange={(event) => setConfirmPassword(event.target.value)}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder='Ej: miContraseña'
                   minLength='8'
                   maxLength='25'
@@ -143,7 +160,7 @@ export function Register () {
                 />
               </Div>
               <DivFlex $mBlock='1.2rem'>
-                <Button type='submit' $action>Registrate</Button>
+                <Button type='submit' disabled={isMatchPass} $action>Registrate</Button>
               </DivFlex>
             </form>
             <DivFlex $gap='0.5rem' $jCenter>

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useTheme } from '../hooks/useTheme.js'
-import { ControlSlider, Slider } from '../styled components/Darth-theme.dark.js'
+import { ControlSlider, Slider } from '../styled components/Darth-theme.js'
 
 export function ToggleSliderTheme ({ id }) {
   const { isDark, toggleTheme } = useTheme()

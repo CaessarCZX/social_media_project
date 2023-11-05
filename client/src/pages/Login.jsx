@@ -18,15 +18,15 @@ import {
   SpacerContainer,
   Text,
   Title
-} from '../styled components/Darth-theme.dark'
+} from '../styled components/Darth-theme.js'
 
 export function Login () {
-  // Show password feature
-  const [showpass, setShowpass] = useState(false)
   // Theme
   const { isDark } = useTheme()
   // Redux
   const dispatch = useDispatch()
+  // Show password feature
+  const [showpass, setShowpass] = useState(false)
   // Verify if the user is autenticated
   useLoginRedirect()
 

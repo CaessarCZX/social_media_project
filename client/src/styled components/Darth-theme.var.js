@@ -221,6 +221,13 @@ export const BUTTONS = Object.freeze({
     boxShadow: 'none',
     hover: {
       backgroundColor: DARTH_THEME_DARK_MODE.choosenElementBtn
+    },
+    disbledState: {
+      opacity: '0.6',
+      color: 'gray',
+      hover: {
+        disableHover: 'none'
+      }
     }
   }
 

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import styled, { css } from 'styled-components'
-import { Margins } from './Darth-theme.dark.js'
+import { Margins } from './Darth-theme.js'
 import { BUTTONS as btn, DARTH_THEME_DARK_MODE as dark } from './Darth-theme.var.js'
 
 export const LinkS = styled(Link)`

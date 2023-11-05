@@ -3,7 +3,7 @@ import logoLight from '../assets/logo-light.svg'
 import { useTheme } from '../hooks/useTheme.js'
 import {
   LogoMain
-} from '../styled components/Darth-theme.dark'
+} from '../styled components/Darth-theme.js'
 
 export default function LogoPage ({ ...props }) {
   const { isDark } = useTheme()

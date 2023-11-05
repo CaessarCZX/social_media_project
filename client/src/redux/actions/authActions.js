@@ -7,7 +7,7 @@ export const TYPES = {
 
 export const login = (credentialAccess) => async (dispatch) => {
   try {
-    // Dispatcher for state data
+    // Dispatcher for loader
     dispatch({
       type: ALERT_TYPES.ALERT,
       payload: {
@@ -28,6 +28,7 @@ export const login = (credentialAccess) => async (dispatch) => {
     // Set login var such as TRUE
     localStorage.setItem('login', true)
 
+    // Show alert to client
     dispatch({
       type: ALERT_TYPES.ALERT,
       payload: {
@@ -35,6 +36,7 @@ export const login = (credentialAccess) => async (dispatch) => {
       }
     })
   } catch (err) {
+    // Show error message to client
     dispatch({
       type: ALERT_TYPES.ALERT,
       payload: {
@@ -47,6 +49,7 @@ export const login = (credentialAccess) => async (dispatch) => {
 export const refreshToken = () => async (dispatch) => {
   const login = localStorage.getItem('login')
   if (login) {
+    // Dispatcher for loader
     dispatch({
       type: ALERT_TYPES.ALERT,
       payload: {
@@ -55,6 +58,7 @@ export const refreshToken = () => async (dispatch) => {
     })
 
     try {
+      // Get the cookie from back-end
       const { data } = await postDataApi('refresh_token')
       dispatch({
         type: TYPES.AUTH,
@@ -64,6 +68,7 @@ export const refreshToken = () => async (dispatch) => {
         }
       })
 
+      // Show alert to client
       dispatch({
         type: ALERT_TYPES.ALERT,
         payload: {
@@ -71,6 +76,7 @@ export const refreshToken = () => async (dispatch) => {
         }
       })
     } catch (err) {
+      // Show error message to client
       dispatch({
         type: ALERT_TYPES.ALERT,
         payload: {
@@ -78,5 +84,27 @@ export const refreshToken = () => async (dispatch) => {
         }
       })
     }
+  }
+}
+
+export const register = (registerData) => async (dispatch) => {
+  try {
+    // Dispatcher for loader
+    dispatch({
+      type: ALERT_TYPES.ALERT,
+      payload: {
+        loading: true
+      }
+    })
+
+    console.log(registerData)
+  } catch (err) {
+    // Show error message to client
+    dispatch({
+      type: ALERT_TYPES.ALERT,
+      payload: {
+        error: err.response.data.msg
+      }
+    })
   }
 }

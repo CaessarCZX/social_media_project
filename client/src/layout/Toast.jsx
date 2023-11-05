@@ -3,7 +3,7 @@ import { useTheme } from '../hooks/useTheme.js'
 import {
   SmallText,
   SubtitleHighlight
-} from '../styled components/Darth-theme.dark.js'
+} from '../styled components/Darth-theme.js'
 import {
   ToastBody,
   ToastCloseBtn,
