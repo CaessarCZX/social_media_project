@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useLoginRedirect } from '../hooks/useLoginRedirect.js'
 import { useTheme } from '../hooks/useTheme.js'
 import LogoPage from '../layout/LogoPage.jsx'
 import { LinkS } from '../styled components/Darth-theme-Router-Links.js'
@@ -16,12 +17,16 @@ import {
 export function Register () {
   // Confirmation
   const [confirmPassword, setConfirmPassword] = useState('')
+
   // Show pass feature
   const [showpass, setShowpass] = useState(false)
   const [showOfPass, setShowOfPass] = useState(false)
 
   // Theme
   const { isDark } = useTheme()
+
+  // Verify if the user is autenticated
+  useLoginRedirect()
 
   // Subtit form data
   const handleSubmit = (event) => {

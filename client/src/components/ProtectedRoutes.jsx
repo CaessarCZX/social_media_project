@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
 import { Navigate, Outlet } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
 
 export function ProtectedRoutes ({ redirecTo = '/landingPage', children }) {
-  const auth = useSelector(state => state.auth)
-  // const dispatch = useDispatch()
-
+  const auth = useAuth()
   if (!auth.token) {
     return <Navigate to={redirecTo} />
   }

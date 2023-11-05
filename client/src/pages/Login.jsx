@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useLoginRedirect } from '../hooks/useLoginRedirect.js'
 import { useTheme } from '../hooks/useTheme.js'
 import LogoPage from '../layout/LogoPage.jsx'
 import { login } from '../redux/actions/authActions.js'
@@ -26,6 +27,8 @@ export function Login () {
   const { isDark } = useTheme()
   // Redux
   const dispatch = useDispatch()
+  // Verify if the user is autenticated
+  useLoginRedirect()
 
   // Submit form data
   const handleSubmit = async (event) => {
