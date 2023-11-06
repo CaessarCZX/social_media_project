@@ -19,6 +19,7 @@ export const DARTH_THEME_DARK_MODE = Object.freeze({
   choosenElement: '#a855f7',
   choosenElementActive: '#e9d5ff',
   choosenElementBtn: '#9333ea',
+  disableActiveBtn: '#62229d',
   boxShadowInsetPrim: `inset 0 1px 0 0 ${TRANSPARENCIES.terciary}`,
   boxShadowInsetSec: `inset 0 0 0 1px ${TRANSPARENCIES.terciary}`,
   boxShadowButtonDefault: `inset 0 0.7px 0 0.2px rgba(255, 255, 255, 0.33), inset 0 0px 0 1px ${TRANSPARENCIES.terciary}`,
@@ -104,6 +105,16 @@ export const FONT_SETTINGS = Object.freeze({
     lineHeight: '1.5'
   },
   textMedium: {
+    size: '14px',
+    weight: '300',
+    element: [
+      'p',
+      'span'
+    ],
+    lineHeight: '1.5'
+  },
+  textMediumAlert: {
+    color: 'red',
     size: '14px',
     weight: '300',
     element: [
@@ -223,7 +234,7 @@ export const BUTTONS = Object.freeze({
       backgroundColor: DARTH_THEME_DARK_MODE.choosenElementBtn
     },
     disbledState: {
-      opacity: '0.6',
+      backgroundColor: DARTH_THEME_DARK_MODE.disableActiveBtn,
       color: 'gray',
       hover: {
         disableHover: 'none'

@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react'
-// import { useDispatch } from 'react-redux'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useLoginRedirect } from '../hooks/useLoginRedirect.js'
 import { useTheme } from '../hooks/useTheme.js'
 import LogoPage from '../layout/LogoPage.jsx'
 // import { manageDataForm } from '../services/login/index.js'
+import { AlertIntoForm } from '../components/AlertIntoForm.jsx'
+import { useAlert } from '../hooks/useAlert.js'
+import { register } from '../redux/actions/authActions.js'
 import { LinkS } from '../styled components/Darth-theme-Router-Links.js'
 import {
   Article,
@@ -15,16 +18,19 @@ import {
   Text,
   Title
 } from '../styled components/Darth-theme.js'
+import { isEmptyObject, undefinedToBoolean } from '../utils/getValues.js'
 
 export function Register () {
   // Theme
   const { isDark } = useTheme()
   // Redux
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
+  const alert = useAlert()
+
   // password matching
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [isMatchPass, setIsMetchPass] = useState(true)
+  const [isMatchPass, setIsMatchPass] = useState(true)
 
   // Show pass feature
   const [showpass, setShowpass] = useState(false)
@@ -34,24 +40,23 @@ export function Register () {
   useLoginRedirect()
 
   // Verify if password is matching
-  useEffect(
-    () => {
-
-    }, [isMatchPass]
-  )
+  const handleConfirmPassword = (value) => {
+    setConfirmPassword(value)
+    const enableBtn = value === password
+    setIsMatchPass(enableBtn)
+  }
 
   // Subtit form data
   const handleSubmit = (event) => {
     event.preventDefault()
     const entries = new window.FormData(event.target)
-    const userData = Object.fromEntries(entries)
-    console.log(userData)
-    // const res = manageDataForm(userData)
-    // dispatch()
+    const inputForm = Object.fromEntries(entries)
+    const userData = { ...inputForm, password, confirmPassword }
+    dispatch(register(userData))
   }
 
   return (
-    <Div $height='120vh'>{/* < ==== < ====  TODO: REMOVE THIS TAG, IT'S JSUT FOR DEVELOPMENT */}
+    <Div $height={isEmptyObject(alert) ? '120vh' : '130vh'}>{/* < ==== < ====  TODO: REMOVE THIS TAG, IT'S JSUT FOR DEVELOPMENT */}
       <SpacerContainer $isDark={isDark}>
         <LateralAbsolute $margin='1.5rem'>
           <LinkS to='/' $isDark={isDark}>Ir a inicio</LinkS>
@@ -71,7 +76,8 @@ export function Register () {
                   <Input
                     type='text'
                     name='firstname'
-                    placeholder='Ej: Tony...'
+                    placeholder={undefinedToBoolean(alert.firstname) ? alert.firstname : 'Ej: Tony...'}
+                    $alertPlaceholder={undefinedToBoolean(alert.firstname)}
                     minLength='5'
                     maxLength='50'
                     $isDark={isDark}
@@ -82,7 +88,8 @@ export function Register () {
                   <Input
                     type='text'
                     name='lastname'
-                    placeholder='Ej: Cayetano...'
+                    placeholder={undefinedToBoolean(alert.lastname) ? alert.lastname : 'Ej: Cayetano...'}
+                    $alertPlaceholder={undefinedToBoolean(alert.lastname)}
                     minLength='5'
                     maxLength='50'
                     $isDark={isDark}
@@ -94,7 +101,8 @@ export function Register () {
                 <Input
                   type='text'
                   name='username'
-                  placeholder='Ej: inSamuel77'
+                  placeholder={undefinedToBoolean(alert.username) ? alert.lastname : 'Ej: inSamuel77'}
+                  $alertPlaceholder={undefinedToBoolean(alert.username)}
                   minLength='5'
                   maxLength='25'
                   $isDark={isDark}
@@ -105,7 +113,8 @@ export function Register () {
                 <Input
                   type='text'
                   name='email'
-                  placeholder='alguien@mail.com'
+                  placeholder={undefinedToBoolean(alert.email) ? alert.email : 'alguien@mail.com'}
+                  $alertPlaceholder={undefinedToBoolean(alert.email)}
                   minLength='10'
                   maxLength='50'
                   $isDark={isDark}
@@ -126,10 +135,10 @@ export function Register () {
                 </DivFlex>
                 <Input
                   type={showpass ? 'type' : 'password'}
-                  // name='password'
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder='Ej: miContraseña'
+                  placeholder={undefinedToBoolean(alert.password) ? alert.password : 'Ej: miContraseña'}
+                  $alertPlaceholder={undefinedToBoolean(alert.password)}
                   minLength='8'
                   maxLength='25'
                   $isDark={isDark}
@@ -150,17 +159,24 @@ export function Register () {
                 </DivFlex>
                 <Input
                   type={showOfPass ? 'type' : 'password'}
-                  // name='confirmPassword'
                   value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  onChange={(e) => handleConfirmPassword(e.target.value)}
                   placeholder='Ej: miContraseña'
                   minLength='8'
                   maxLength='25'
                   $isDark={isDark}
                 />
               </Div>
+              {/* Show password match error message */}
+              <AlertIntoForm value={!isMatchPass}>
+                {
+                  (confirmPassword === ''
+                    ? 'Ingrese nuevamente la contraseña'
+                    : 'Las contreseñas no coinciden')
+                }
+              </AlertIntoForm>
               <DivFlex $mBlock='1.2rem'>
-                <Button type='submit' disabled={isMatchPass} $action>Registrate</Button>
+                <Button type='submit' disabled={!isMatchPass} $action>Registrate</Button>
               </DivFlex>
             </form>
             <DivFlex $gap='0.5rem' $jCenter>

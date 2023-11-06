@@ -187,6 +187,14 @@ export const Text = styled.p`
   `}
 `
 
+export const TextAlert = styled.p`
+  /* Derfault Medium text */
+  font-size: ${font.textMediumAlert.size};
+  font-weight: ${font.textMediumAlert.weight};
+  line-height: ${font.textMediumAlert.lineHeight};
+  color: ${font.textMediumAlert.color};
+`
+
 export const SmallText = styled.span`
   /* Default Small title */
   display: ${font.txtSmall.display};
@@ -231,6 +239,12 @@ export const Input = styled.input`
     color: ${dark.textSeconday};
     letter-spacing: 0.5px;
   }
+  
+  ${(props) => props.$alertPlaceholder && css`
+    &::placeholder {
+      color: red
+    }
+  `}
 `
 export const Label = styled.label`
   ${Margins}
@@ -276,6 +290,15 @@ export const Button = styled.button`
 
   &:hover {
     background-color: ${btn.defaultBtn.hover.backgroundColor};
+  }
+
+  &:disabled {
+    background-color: ${btn.actionBtn.disbledState.backgroundColor};
+    color: ${btn.actionBtn.disbledState.color};
+
+    &:hover {
+      background-color: ${btn.actionBtn.disbledState.backgroundColor};
+    }
   }
 
   ${(props) => props.$action && css`
@@ -455,6 +478,7 @@ export const ContainerArticle = styled(Article)`
 // ----------- LOGO STYLE -----------------
 export const LogoMain = styled.img`
   max-width: 100px;
+  transition: max-width ${dark.transitionDuration.short} ease;
 
   ${(props) => props.$large && css` max-width: 200px; `}
 `
