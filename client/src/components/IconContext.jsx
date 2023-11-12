@@ -21,12 +21,12 @@ export const IconContext = (
   return (
     <Icon
       size='2rem'
-      {...rest}
       color={
         isDark
           ? DarkTheme
           : LightTheme
       }
+      {...rest}
     />
   )
 }

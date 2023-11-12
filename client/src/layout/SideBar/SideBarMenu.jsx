@@ -3,6 +3,7 @@ import {
   CiSettings,
   CiUser
 } from 'react-icons/ci'
+import { FaPowerOff } from 'react-icons/fa'
 import {
   PiHouseSimpleLight
 } from 'react-icons/pi'
@@ -17,6 +18,7 @@ import {
 } from '../../styled components/SideBarMenu-theme.js'
 import { SideBarMenuCardView } from '../SideBar/SideBarMenuCardView.jsx'
 import { SideBarMenuItemView } from '../SideBar/SideBarMenuItemView.jsx'
+import { SideBarMenuActionItemView } from './SideBarMenuActionItemView .jsx'
 
 const sectionItems = [
   {
@@ -42,6 +44,19 @@ const sectionItems = [
     label: 'Configuración',
     Icon: CiSettings,
     url: '/settings'
+  }
+]
+
+// Be careful with 'color' attribute, it should be an empty string('') if no color available
+const actionItems = [
+  {
+    id: 1,
+    name: 'Cerrar sesión',
+    shortName: 'Salir',
+    label: 'Cerrar sesión',
+    Icon: FaPowerOff,
+    Action: function () {},
+    color: 'yellowgreen'
   }
 ]
 
@@ -89,6 +104,16 @@ export function SideBarMenu () {
               key={sectionItem.label}
               sectionItem={sectionItem}
               isOpen={isOpen}
+            />))
+      }
+      {
+        actionItems.map(
+          (actionItem) => (
+            <SideBarMenuActionItemView
+              key={actionItem.name}
+              actionItem={actionItem}
+              isOpen={isOpen}
+              setColor
             />))
       }
     </SideBarContainer>

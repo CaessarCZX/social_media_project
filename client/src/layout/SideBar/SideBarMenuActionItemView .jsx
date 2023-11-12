@@ -7,13 +7,13 @@ import {
   SmallText
 } from '../../styled components/Darth-theme.js'
 import {
+  SideBarActionItemButton,
   SideBarItemOpenFade,
   SideBarMenuItemCollapse,
-  SideBarTooltip,
-  WrapLink
+  SideBarTooltip
 } from '../../styled components/SideBarMenu-theme.js'
 
-export function SideBarMenuItemView ({ sectionItem, isOpen }) {
+export function SideBarMenuActionItemView ({ actionItem, isOpen, setColor }) {
   // Theme
   const { isDark } = useTheme()
 
@@ -22,18 +22,22 @@ export function SideBarMenuItemView ({ sectionItem, isOpen }) {
     name,
     shortName,
     label,
-    url,
-    Icon
-  } = sectionItem
+    Icon,
+    Action,
+    color
+  } = actionItem
 
   return (
     <LiFlex
       aria-label={label}
       $aiCenter
     >
-      <WrapLink to={url}>
+      <SideBarActionItemButton onClick={Action}>
         <SideBarMenuItemCollapse $isOpen={isOpen}>
-          <IconContext icon={Icon} />
+          <IconContext
+            icon={Icon}
+            style={{ color: setColor && color }}
+          />
           {
             isOpen
               ? (
@@ -44,7 +48,7 @@ export function SideBarMenuItemView ({ sectionItem, isOpen }) {
               : <SmallText $isDark={isDark}>{shortName}</SmallText>
           }
         </SideBarMenuItemCollapse>
-      </WrapLink>
+      </SideBarActionItemButton>
       {
         isOpen || <SideBarTooltip>{label}</SideBarTooltip>
       }
@@ -52,7 +56,8 @@ export function SideBarMenuItemView ({ sectionItem, isOpen }) {
   )
 }
 
-SideBarMenuItemView.propTypes = {
-  sectionItem: PropTypes.object.isRequired,
-  isOpen: PropTypes.bool.isRequired
+SideBarMenuActionItemView.propTypes = {
+  actionItem: PropTypes.object.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  setColor: PropTypes.bool
 }

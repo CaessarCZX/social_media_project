@@ -53,7 +53,7 @@ export const SideBarContainer = styled(ContainerAside)`
   @media screen and (width < 500px){
     left: initial;
     top: initial;
-    bottom: 0vh;
+    bottom: 0;
     height: 68px;
     width: 100vw;
     flex-direction: row;
@@ -80,6 +80,24 @@ export const SideBarWrapActivateButton = styled.button`
     /* For hidden Card Container */
     & + article {
       display: none;
+    }
+  }
+`
+
+export const SideBarActionItemButton = styled.button`
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  padding: 0.9rem 1rem;
+  width: 100%;
+  position: relative;
+
+  &:hover {
+
+    /* Tooltip behavior */
+    & + span {
+      display: block;
     }
   }
 `
@@ -150,9 +168,16 @@ export const SideBarMenuItemCollapse = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation-duration: 2s;
+  animation-name: ${fadeIn};
 
   ${(props) => props.$isOpen && css`
     flex-direction: row;
     gap: 1.5rem;
   `}
+`
+
+export const SideBarItemOpenFade = styled.div`
+  animation-duration: 2s;
+  animation-name: ${fadeIn};
 `
