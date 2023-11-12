@@ -1,7 +1,7 @@
 import { ToggleSliderTheme } from '../components/ToggleSliderTheme.jsx'
 import { useLoginRedirect } from '../hooks/useLoginRedirect.js'
 import { useTheme } from '../hooks/useTheme.js'
-import LogoPage from '../layout/LogoPage.jsx'
+import { LogoPage } from '../layout/Logo/LogoPage.jsx'
 import { ButtonLink } from '../styled components/Darth-theme-Router-Links.js'
 import {
   Div,

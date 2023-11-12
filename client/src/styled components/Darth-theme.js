@@ -16,13 +16,13 @@ import {
 /*          Conditional Sense for theme         */
 /* -------------------------------------------- */
 
-const DarthSense = [
+export const DarthSense = [
   `background-color: ${glass.primary};`,
   `backdrop-filter: ${dark.blurBoxDefault};`,
   `border: ${dark.borderPrimary};`,
   `box-shadow: ${dark.boxShadowInsetPrim},${dark.boxShadowInsetSec};`
 ].join(' ')
-const DarthSenseLight = [
+export const DarthSenseLight = [
   `background-color: ${light.backgroundContainer};`,
   `backdrop-filter: ${light.blurBoxDefault};`,
   `border: ${light.borderPrimary};`,

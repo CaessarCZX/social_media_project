@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useLoginRedirect } from '../hooks/useLoginRedirect.js'
 import { useTheme } from '../hooks/useTheme.js'
-import LogoPage from '../layout/LogoPage.jsx'
+import { LogoPage } from '../layout/Logo/LogoPage.jsx'
 import { login } from '../redux/actions/authActions.js'
 import { LinkS } from '../styled components/Darth-theme-Router-Links.js'
 import {

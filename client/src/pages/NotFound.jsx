@@ -1,5 +1,5 @@
 import { useTheme } from '../hooks/useTheme.js'
-import LogoPage from '../layout/LogoPage.jsx'
+import { LogoPage } from '../layout/Logo/LogoPage.jsx'
 import { LinkS } from '../styled components/Darth-theme-Router-Links.js'
 import {
   Article,
