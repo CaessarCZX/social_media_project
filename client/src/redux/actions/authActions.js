@@ -136,3 +136,18 @@ export const register = (registerData) => async (dispatch) => {
     })
   }
 }
+
+export const logout = () => async (dispatch) => {
+  try {
+    localStorage.removeItem('login')
+    await postDataApi('logout')
+  } catch (err) {
+    // Show error message to client
+    dispatch({
+      type: ALERT_TYPES.ALERT,
+      payload: {
+        error: err.response.data.msg
+      }
+    })
+  }
+}

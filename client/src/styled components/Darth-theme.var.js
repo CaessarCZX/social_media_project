@@ -5,7 +5,26 @@ export const TRANSPARENCIES = Object.freeze({
 })
 
 export const DARTH_THEME_LIGHT_MODE = {
-  backgroundPrimary: '#f4f1f9'
+  backgroundPrimary: '#f4f1f9',
+  backgroundContainerStrong: '#fff',
+  titlePrimary: '#0e0915',
+  backgroundContainer: 'rgba(255, 255, 255, 0.27)',
+  boxShadowInsetPrim: 'inset 0 1px 0 0 rgba(0, 0, 0, 0.03)',
+  boxShadowInsetSec: 'inset 0 0 0 1px rgba(0, 0, 0, 0.03)',
+  boxShadowButtonDefault: 'inset 0 0.7px 0 0.2px rgba(0, 0, 0, 0.3), inset 0 0px 0 1px rgba(0, 0, 0, 0.012)',
+  borderPrimary: 'solid 0.0625rem rgba(0, 1, 0, 0.12)',
+  borderSettings: {
+    style: 'solid',
+    weight: '0.0625rem'
+  },
+  blurBoxDefault: 'blur(5px)',
+  borderRadiusDefault: '1.5rem',
+  transitionDuration: {
+    short: '0.3s',
+    normal: '0.7s',
+    medium: '1.3s',
+    large: '2s'
+  }
 }
 
 export const DARTH_THEME_DARK_MODE = Object.freeze({
@@ -78,7 +97,10 @@ export const FONT_SETTINGS = Object.freeze({
       webkitBackgroundClip: 'text',
       webkitTextFillColor: 'transparent'
     },
-    lineHeight: '1.5'
+    lineHeight: '1.5',
+    medium: {
+      size: '14px'
+    }
   },
   subtitleLarge: {
     size: '20px',

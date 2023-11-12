@@ -25,7 +25,7 @@ export function NotFound () {
         </LateralAbsolute>
         <CenterAbosolute $maxWidth='500px'>
           <Article $txtCenter>
-            <ContainerArticle>
+            <ContainerArticle $isDark={isDark} $enableRadius>
               <HugeTitle $isDark={isDark}>404</HugeTitle>
             </ContainerArticle>
             <Title $isDark={isDark}>Not Found</Title>

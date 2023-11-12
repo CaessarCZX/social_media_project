@@ -12,21 +12,28 @@ import {
   TOGGLE as toggle
 } from './Darth-theme.var.js'
 
-// GLOBAL STYLES FOR CONTAINER
+/* -------------------------------------------- */
+/*          Conditional Sense for theme         */
+/* -------------------------------------------- */
 
-// -------------------------
-// Condicionales
-// -------------------------
 const DarthSense = [
   `background-color: ${glass.primary};`,
   `backdrop-filter: ${dark.blurBoxDefault};`,
-  `border-radius: ${dark.borderRadiusDefault};`,
   `border: ${dark.borderPrimary};`,
   `box-shadow: ${dark.boxShadowInsetPrim},${dark.boxShadowInsetSec};`
 ].join(' ')
+const DarthSenseLight = [
+  `background-color: ${light.backgroundContainer};`,
+  `backdrop-filter: ${light.blurBoxDefault};`,
+  `border: ${light.borderPrimary};`,
+  `box-shadow: ${light.boxShadowInsetPrim},${light.boxShadowInsetSec};`
+].join('')
 const DisplayFlex = 'display: flex;'
 
-// Conditional
+/* -------------------------------------------- */
+/*              Conditional Props               */
+/* -------------------------------------------- */
+
 const DefaultFeaturesContainers = (props) => css`
   ${props.$width && css`width: ${props.$width};`}
   ${props.$height && css`height: ${props.$height};`}
@@ -45,6 +52,21 @@ export const Margins = (props) => css`
   ${props.$margin && css`margin: ${props.$margin};`}
   ${props.$mBlock && css`margin-block: ${props.$mBlock};`}
   ${props.$mInline && css`margin-inline: ${props.$mInline};`}
+`
+const setBorders = (props) => css`
+  ${props.$border && css`border: ${props.$border};`}
+  ${props.$borderRadius && css`border: ${props.$borderRadius};`}
+  ${props.$borderWidth && css`border-width: ${props.$borderWidth};`}
+`
+
+const eraseBorders = (props) => css`
+  ${props.$disableBlockBorder && css`border-block: none;`}
+  ${props.$disableInlineBorder && css`border-inline: none;`}
+  ${props.$disableRightBorder && css`border-right: none;`}
+  ${props.$disableLeftBorder && css`border-left: none;`}
+  ${props.$disableTopBorder && css`border-top: none;`}
+  ${props.$disableBottomBorder && css`border-bottom: none;`}
+  ${props.$disableBorder && css`border: none;`}
 `
 
 const Paddings = (props) => css`
@@ -84,18 +106,32 @@ const ItemOnFlexSettings = (props) => css`
   ${props.$asStart && css`align-self: flex-start;`}
   ${props.$asEnd && css`align-self: flex-end;`}
 `
-// |----------------- Defined Styles ---------------------|
 
-// TITLES
+export const PreventSelectionInMobile = [
+  ' -webkit-tap-highlight-color: rgba(0, 0, 0, 0);', /* Disable hightlihgted selection in Safari */
+  '-webkit-touch-callout: none;', /* Diseable context menu in iOS */
+  '-webkit-user-select: none;', /* Prevent user text selection in Safari */
+  '-khtml-user-select: none;', /* Prevent user text selection in navegadores basados en KHTML */
+  '-moz-user-select: none;', /* Prevent user text selection in Firefox */
+  '-ms-user-select: none;', /* Prevent user text selection in Internet Explorer/Edge */
+  'user-select: none;' /* Prevent user text selection in browser */
+].join('')
+
+// --------- Standar Elements in Page --------- */
+
+/* -------------------------------------------- */
+/*                     Titles                   */
+/* -------------------------------------------- */
+
 export const MainTitle = styled.h1`
-  /* Just Large title */
+
   font-size: ${font.titleLarge.size};
   font-weight: ${font.titleLarge.weight};
   line-height: 1;
   padding-bottom: 1rem;
   color: #0e0e0e;
 
-  ${(props) => props.$isDark && css`
+  ${(props) => props.$isDark && css` 
     color: ${font.titleDegree.dark.color};
     background-image: ${font.titleDegree.dark.backgroundImage};
     background-clip: ${font.titleDegree.dark.backgroundClip};
@@ -105,6 +141,7 @@ export const MainTitle = styled.h1`
 
 `
 export const Title = styled.h2`
+
   /* Default Large title */
   font-size: ${font.titleLarge.size};
   font-weight: ${font.titleLarge.weight};
@@ -126,6 +163,7 @@ export const Title = styled.h2`
   font-weight: ${font.titleMedium.weight};
   line-height: ${font.titleMedium.lineHeight};
   `}
+
   /* Small title */
   ${(props) => props.$small && css`
   font-size: ${font.titleSmall.size};
@@ -133,22 +171,29 @@ export const Title = styled.h2`
   line-height: ${font.titleSmall.lineHeight};
   `}
 `
+
+/* -------------------------------------------- */
+/*                  Subtitles                   */
+/* -------------------------------------------- */
+
 export const SubtitleHighlight = styled.div`
-  /* display: inline-block; */
   font-size: ${font.subtitleHighlight.size};
   font-weight: ${font.subtitleHighlight.weight};
   line-height: ${font.subtitleHighlight.lineHeight};
   color: ${font.subtitleHighlight.gradient.color};
+
   /* TODO: background feature for white mode */
   background-image: ${font.subtitleHighlight.gradient.backgroundImage};
   background-clip: ${font.subtitleHighlight.gradient.backgroundClip};
   -webkit-background-clip: ${font.subtitleHighlight.gradient.webkitBackgroundClip};  
   -webkit-text-fill-color: ${font.subtitleHighlight.gradient.webkitTextFillColor};
+
+  ${(props) => props.$medium && css`font-size: ${font.subtitleHighlight.medium.size}`}
 `
 
 export const Subtitle = styled.h3`
+
   /* Default Large subtitle */
-  /* display: inline-block; */
   font-size: ${font.subtitleLarge.size};
   font-weight: ${font.subtitleLarge.weight};
   line-height: ${font.subtitleLarge.lineHeight};
@@ -163,15 +208,17 @@ export const Subtitle = styled.h3`
 `
 
 export const MicroSubtitle = styled.h4`
+
   /* Default Small subtitle */
-  /* display: inline-block; */
   font-size: ${font.subtitleSmall.size};
   font-weight: ${font.subtitleSmall.weight};
   line-height: ${font.subtitleSmall.lineHeight};
   color: ${(props) => (props.$isDark ? dark.textHighlight : '#0e0e0e')};
 `
 
-// TEXT
+/* -------------------------------------------- */
+/*                      Text                    */
+/* -------------------------------------------- */
 export const Text = styled.p`
   /* Default Large text */
   font-size: ${font.textLarge.size};
@@ -211,7 +258,9 @@ export const SmallText = styled.span`
   `}
 `
 
-// INPUTS
+/* -------------------------------------------- */
+/*                  Input form                  */
+/* -------------------------------------------- */
 export const Input = styled.input`
   ${Margins}
 
@@ -255,6 +304,7 @@ export const Label = styled.label`
   margin: ${input.label.margin};
   color: ${(props) => (props.$isDark ? dark.titlePrimary : '#0e0e0e')};
 
+  /* For Required symbol */
   ${(props) => props.$required && css`
   position: relative;
 
@@ -266,7 +316,10 @@ export const Label = styled.label`
   `}
 `
 
-// BUTTON
+/* -------------------------------------------- */
+/*                    Button                    */
+/* -------------------------------------------- */
+
 export const Button = styled.button`
   ${Margins}
 
@@ -312,41 +365,60 @@ export const Button = styled.button`
   `}
 `
 
-// -------------------------
-// Containers
-// -------------------------
-// --------- GENERAL BLOCK -------------
+// -------- Standar Containers in Page -------- */
+
+/* -------------------------------------------- */
+/*          Semantic Block Containers           */
+/* -------------------------------------------- */
+
 export const Div = styled.div`
   ${DefaultFeaturesContainers}
   ${Margins}
   ${Paddings}
+  ${setBorders}
 `
 export const Header = styled.header`
   ${DefaultFeaturesContainers}
   ${Margins}
   ${Paddings}
+  ${setBorders}
 `
 export const Section = styled.section`
   ${DefaultFeaturesContainers}
   ${Margins}
   ${Paddings}
+  ${setBorders}
 `
 export const Article = styled.article`
   ${DefaultFeaturesContainers}
   ${Margins}
   ${Paddings}
+  ${setBorders}
+`
+
+export const Aside = styled.aside`
+  ${DefaultFeaturesContainers}
+  ${Margins}
+  ${Paddings}
+  ${setBorders}
 `
 export const Ul = styled.ul`
   ${DefaultFeaturesContainers}
   ${Margins}
   ${Paddings}
+  ${setBorders}
 `
 export const Li = styled.li`
   ${DefaultFeaturesContainers}
   ${Margins}
   ${Paddings}
+  ${setBorders}
 `
-// ---------- GENERAL FLEX --------------
+
+/* -------------------------------------------- */
+/*           Semantic Flex Containers           */
+/* -------------------------------------------- */
+
 export const DivFlex = styled(Div)`
   ${DisplayFlex}
   ${FlexSettings}
@@ -404,7 +476,7 @@ export const Page = styled(Div)`
     background-image: url(${(props) => (props.$isDark ? darkBg : lightBg)});
     background-color: ${(props) => (props.$isDark ? dark.backgroundPrimary : light.backgroundPrimary)};
     background-position: center;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
     background-size: cover;
     background-repeat: no-repeat;
   `}
@@ -433,7 +505,9 @@ export const ItemBlock = styled(Li)`
   display: inline-block;
 `
 
-// SPECIFIC CONTAINER FLOCK FOR COMPONENT
+/* -------------------------------------------- */
+/*          Specific Block Containers           */
+/* -------------------------------------------- */
 export const SpacerContainer = styled(Section)`
   width: 100%;
   height: 100%;
@@ -445,7 +519,7 @@ export const SpacerContainer = styled(Section)`
   background-repeat: no-repeat;
 `
 
-export const AsideLateral = styled.aside` //
+export const AsideLateral = styled.aside` 
   width: 30vw;
   height: 100vh;
   position: fixed;
@@ -472,7 +546,33 @@ export const AsideLateral = styled.aside` //
 // Container Predefinied
 // -------------------------
 export const ContainerArticle = styled(Article)`
- ${DarthSense}
+   ${DarthSenseLight}
+  
+  ${(props) => props.$isDark && css`
+    ${DarthSense}
+  `}
+  ${(props) => props.$enableRadius && css`
+    border-radius: ${dark.borderRadiusDefault};
+  `}
+  ${(props) => props.$lightStrong && css`
+    background-color: ${light.backgroundContainerStrong};
+  `}
+  ${eraseBorders}
+`
+
+export const ContainerAside = styled(Aside)`
+  ${DarthSenseLight}
+
+  ${(props) => props.$isDark && css`
+    ${DarthSense}
+  `}
+  ${(props) => props.$enableRadius && css`
+    border-radius: ${dark.borderRadiusDefault};
+  `}
+  ${(props) => props.$lightStrong && css`
+    background-color: ${light.backgroundContainerStrong};
+  `}
+  ${eraseBorders}
 `
 
 // ----------- LOGO STYLE -----------------
