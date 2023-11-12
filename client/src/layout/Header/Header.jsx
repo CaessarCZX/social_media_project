@@ -1,6 +1,17 @@
+import { BsSearch } from 'react-icons/bs'
+import { IoNotificationsOutline } from 'react-icons/io5'
+import { IconContext } from '../../components/IconContext.jsx'
 import { useTheme } from '../../hooks/useTheme.js'
-import { LiFlex, UlFlex } from '../../styled components/Darth-theme'
-import { HeaderContainer } from '../../styled components/Header-theme.js'
+import {
+  HeaderFlex,
+  LiFlex,
+  UlFlex
+} from '../../styled components/Darth-theme'
+import {
+  HeaderSearchBar,
+  HeaderWrapButton,
+  SearchBarPositionInnnerIcon
+} from '../../styled components/Header-theme.js'
 import { LogoPage } from '../Logo/LogoPage.jsx'
 
 export function Header () {
@@ -8,18 +19,30 @@ export function Header () {
   const { isDark } = useTheme()
 
   return (
-    <HeaderContainer $isDark={isDark}>
-      <UlFlex>
-        <LiFlex>
-          Input
+    <HeaderFlex $jEnd>
+      <UlFlex
+        $aiCenter
+        $margin='0 1rem 0'
+      >
+
+        <LiFlex $relative $margin='0 1rem 0 0'>
+          <HeaderSearchBar $isDark={isDark} />
+          <SearchBarPositionInnnerIcon>
+            <IconContext spellCheck size='1.1rem' icon={BsSearch} />
+          </SearchBarPositionInnnerIcon>
         </LiFlex>
+
         <LiFlex>
-          icons
+          <HeaderWrapButton>
+            <IconContext size='1.7rem' icon={IoNotificationsOutline} />
+          </HeaderWrapButton>
         </LiFlex>
+
         <LiFlex>
           <LogoPage />
         </LiFlex>
+
       </UlFlex>
-    </HeaderContainer>
+    </HeaderFlex>
   )
 }

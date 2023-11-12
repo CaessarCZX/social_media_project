@@ -9,6 +9,7 @@ import {
 import {
   VscMenu
 } from 'react-icons/vsc'
+import { IconContext } from '../../components/IconContext.jsx'
 import { useTheme } from '../../hooks/useTheme.js'
 import {
   SideBarContainer,
@@ -16,7 +17,6 @@ import {
 } from '../../styled components/SideBarMenu-theme.js'
 import { SideBarMenuCardView } from '../SideBar/SideBarMenuCardView.jsx'
 import { SideBarMenuItemView } from '../SideBar/SideBarMenuItemView.jsx'
-import { SideBarIconContext } from './SideBarIconContext.jsx'
 
 const sectionItems = [
   {
@@ -75,7 +75,7 @@ export function SideBarMenu () {
       $dissableLeftBorder
     >
       <SideBarWrapActivateButton onClick={handleClick}>
-        <SideBarIconContext size='1.7rem' icon={VscMenu} />
+        <IconContext size='1.7rem' icon={VscMenu} />
       </SideBarWrapActivateButton>
 
       <SideBarMenuCardView

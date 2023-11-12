@@ -579,8 +579,21 @@ export const ContainerAside = styled(Aside)`
 export const LogoMain = styled.img`
   max-width: 100px;
   transition: max-width ${dark.transitionDuration.short} ease;
+  
+  /* Icon behavior with mobile devices */
+  @media screen and (width < 500px){
+    max-width: 77px;
+  }
 
-  ${(props) => props.$large && css` max-width: 200px; `}
+  /* Set Large icon */
+  ${(props) => props.$large && css`
+    max-width: 200px;
+    
+    /* Large icon behavior with mobile divices */
+    @media screen and (width < 500px){
+      max-width: 150px;
+    }
+  `}
 `
 
 export const HugeTitle = styled(Title)`

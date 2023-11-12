@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { IconContext } from '../../components/IconContext.jsx'
 import { useTheme } from '../../hooks/useTheme.js'
 import {
   LiFlex,
@@ -10,7 +11,6 @@ import {
   SideBarTooltip,
   WrapLink
 } from '../../styled components/SideBarMenu-theme.js'
-import { SideBarIconContext } from './SideBarIconContext.jsx'
 
 export function SideBarMenuItemView ({ sectionItem, isOpen }) {
   // Theme
@@ -32,7 +32,7 @@ export function SideBarMenuItemView ({ sectionItem, isOpen }) {
     >
       <WrapLink to={url}>
         <SideBarMenuItemCollapse $isOpen={isOpen}>
-          <SideBarIconContext icon={Icon} />
+          <IconContext icon={Icon} />
           {
             isOpen
               ? <MicroSubtitle $isDark={isDark}>{name}</MicroSubtitle>

@@ -43,13 +43,22 @@ export const SideBarContainer = styled(ContainerAside)`
   box-shadow:  0 0 0 1px rgba(255, 255, 255, 0.1);
   
   ${trasition('width')}
+  ${PreventSelectionInMobile}
   
   ${(props) => props.$isOpen && css`
   width: 300px;
   `}
 
   /* Rsponsive Container behavior in mobile divices */
-  /* TODO: ... */
+  @media screen and (width < 500px){
+    left: initial;
+    top: initial;
+    bottom: 0vh;
+    height: 68px;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 `
 
 export const SideBarWrapActivateButton = styled.button`
@@ -66,14 +75,11 @@ export const SideBarWrapActivateButton = styled.button`
   
   /* Responve UX Button for mobile devices */
   @media screen and (width < 500px){
-    ${PreventSelectionInMobile}
-    
-    &:hover {
-      background-color: transparent;
-    }
-    
-    &:active {
-      background-color: rgba(168, 86, 247, 0.25);
+    display: none;
+
+    /* For hidden Card Container */
+    & + article {
+      display: none;
     }
   }
 `
@@ -85,6 +91,10 @@ export const SideBarWrapProfileImg = styled.picture`
   max-height: 150px;
   overflow: hidden;
   border-radius: 50%;
+    /* Responve UX Button for mobile devices */
+  @media screen and (width < 500px){
+    display: none;
+  }
 `
 
 export const SideBarProfileImg = styled.img`
@@ -112,6 +122,7 @@ export const WrapLink = styled(Link)`
   width: 100%;
   position: relative;
   ${trasition('background-color')}
+  ${PreventSelectionInMobile}
 
   &:hover {
     background-color: rgba(168, 86, 247, 0.25);
@@ -124,7 +135,6 @@ export const WrapLink = styled(Link)`
 
   /* Responve UX Link for mobile devices */
   @media screen and (width < 500px){
-    ${PreventSelectionInMobile}
     
     &:hover {
       background-color: transparent;
