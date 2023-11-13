@@ -139,8 +139,25 @@ export const register = (registerData) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
+    // Dispatcher for loader
+    dispatch({
+      type: ALERT_TYPES.ALERT,
+      payload: {
+        loading: true
+      }
+    })
+
     localStorage.removeItem('login')
-    await postDataApi('logout')
+    const { data } = await postDataApi('logout')
+    window.location.href = '/'
+
+    // Show alert to client
+    dispatch({
+      type: ALERT_TYPES.ALERT,
+      payload: {
+        success: data.msg
+      }
+    })
   } catch (err) {
     // Show error message to client
     dispatch({

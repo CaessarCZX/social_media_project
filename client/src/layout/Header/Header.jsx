@@ -25,10 +25,13 @@ export function Header () {
         $margin='0 1rem 0'
       >
 
-        <LiFlex $relative $margin='0 1rem 0 0'>
-          <HeaderSearchBar $isDark={isDark} />
+        <LiFlex
+          $relative
+          $margin='0 1rem 0 0'
+        >
+          <HeaderSearchBar placeholder='Buscar en GeekNet' $isDark={isDark} />
           <SearchBarPositionInnnerIcon>
-            <IconContext spellCheck size='1.1rem' icon={BsSearch} />
+            <IconContext size='1.1rem' icon={BsSearch} />
           </SearchBarPositionInnnerIcon>
         </LiFlex>
 

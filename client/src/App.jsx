@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AlertSystem } from './components/AlertSystem'
+import { ProtectedRoutes } from './components/ProtectedRoutes.jsx'
 import { Home } from './pages/Home.jsx'
 import { Landing } from './pages/Landing.jsx'
 import { Login } from './pages/Login.jsx'
@@ -24,12 +25,20 @@ function App () {
       <BrowserRouter>
         <AlertSystem />
         <Routes>
+
           <Route index element={<Landing />} />
+
+          {/* useLoginRedirect affected routes */}
           <Route path='/landingPage' element={<Landing />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/home' element={<Home />} />
-          <Route path='/post/:id' element={<Post />} />
+
+          {/* Protected routes: only access with token */}
+          <Route element={<ProtectedRoutes redirecTo='/' />}>
+            <Route path='/home' element={<Home />} />
+            <Route path='/post/:id' element={<Post />} />
+          </Route>
+
           <Route path='*' element={<NotFound />} />
         </Routes>
       </BrowserRouter>

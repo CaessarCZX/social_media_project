@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
 import { IconContext } from '../../components/IconContext.jsx'
 import { useTheme } from '../../hooks/useTheme.js'
+import { logout } from '../../redux/actions/authActions.js'
 import {
   LiFlex,
   MicroSubtitle,
@@ -13,9 +15,11 @@ import {
   SideBarTooltip
 } from '../../styled components/SideBarMenu-theme.js'
 
-export function SideBarMenuActionItemView ({ actionItem, isOpen, setColor }) {
+export function SideBarMenuLogoutItemView ({ actionItem, isOpen, setColor }) {
   // Theme
   const { isDark } = useTheme()
+  // Redux dispatcher
+  const dispatch = useDispatch()
 
   // Sections data
   const {
@@ -23,7 +27,6 @@ export function SideBarMenuActionItemView ({ actionItem, isOpen, setColor }) {
     shortName,
     label,
     Icon,
-    Action,
     color
   } = actionItem
 
@@ -32,7 +35,7 @@ export function SideBarMenuActionItemView ({ actionItem, isOpen, setColor }) {
       aria-label={label}
       $aiCenter
     >
-      <SideBarActionItemButton onClick={Action}>
+      <SideBarActionItemButton onClick={() => dispatch(logout())}>
         <SideBarMenuItemCollapse $isOpen={isOpen}>
           <IconContext
             icon={Icon}
@@ -56,7 +59,7 @@ export function SideBarMenuActionItemView ({ actionItem, isOpen, setColor }) {
   )
 }
 
-SideBarMenuActionItemView.propTypes = {
+SideBarMenuLogoutItemView.propTypes = {
   actionItem: PropTypes.object.isRequired,
   isOpen: PropTypes.bool.isRequired,
   setColor: PropTypes.bool
