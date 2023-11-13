@@ -11,15 +11,6 @@ import { SideBarMenuItemView } from '../SideBar/SideBarMenuItemView.jsx'
 import { LogOutItem, sectionItems } from './SideBarMenuItems.js'
 import { SideBarMenuLogoutItemView } from './SideBarMenuLogoutItemView .jsx'
 
-const userData = {
-  id: 'card',
-  displayName: 'Cesar Jhonatan Tun Cetina',
-  username: 'caez@r45',
-  occupation: 'Estudiante',
-  photoUrl: '',
-  url: '/'
-}
-
 export function SideBarMenu () {
   // Redux
   const { isDark } = useTheme()
@@ -45,7 +36,6 @@ export function SideBarMenu () {
       </SideBarWrapActivateButton>
 
       <SideBarMenuCardView
-        card={userData}
         isOpen={isOpen}
       />
       {
