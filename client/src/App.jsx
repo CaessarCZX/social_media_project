@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AlertSystem } from './components/AlertSystem'
+// import { ProtectedRoutes } from './components/ProtectedRoutes.jsx'
 import { useAuth } from './hooks/useAuth.js'
 import { DefaultLayout } from './layout/DefaultLayout/DefaultLayout.jsx'
 import { Home } from './pages/Home.jsx'
@@ -32,8 +33,14 @@ function App () {
           <Route index element={<Landing />} />
 
           <Route path='/landingPage' element={<Landing />} />
+
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+
+          {/* <Route element={<ProtectedRoutes redirecTo='/' />}>
+            <Route path='/home' element={<Home />} />
+            <Route path='/post/:id' element={<Post />} />
+          </Route> */}
 
           <Route path='/home' element={auth.token ? <Home /> : <Landing />} />
           <Route path='/post/:id' element={auth.token ? <Post /> : <Landing />} />
