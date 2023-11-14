@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTheme } from '../hooks/useTheme.js'
 import { LogoPage } from '../layout/Logo/LogoPage.jsx'
@@ -6,6 +6,8 @@ import { LogoPage } from '../layout/Logo/LogoPage.jsx'
 import { AlertIntoForm } from '../components/AlertIntoForm.jsx'
 import { useAlert } from '../hooks/useAlert.js'
 // import { useLoginRedirect } from '../hooks/useLoginRedirect.js'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth.js'
 import { register } from '../redux/actions/authActions.js'
 import { LinkS } from '../styled components/Darth-theme-Router-Links.js'
 import {
@@ -37,7 +39,16 @@ export function Register () {
   const [showOfPass, setShowOfPass] = useState(false)
 
   // Verify if the user is autenticated
+  const auth = useAuth()
+  const navigate = useNavigate()
   // useLoginRedirect()
+  useEffect(
+    () => {
+      if (auth.token) {
+        navigate('/home')
+      }
+    }, [auth.token, navigate]
+  )
 
   // Verify if password is matching
   const handleConfirmPassword = (value) => {

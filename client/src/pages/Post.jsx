@@ -1,19 +1,20 @@
 import { useTheme } from '../hooks/useTheme'
 import {
-  CenterAbosolute,
-  SectionFull
+  Page
 } from '../styled components/Darth-theme.js'
 
 export function Post () {
   const { isDark } = useTheme()
 
   return (
-    <>
-      <SectionFull $enableBg $isDark={isDark} $absolute>
-        <CenterAbosolute>
-          hola
-        </CenterAbosolute>
-      </SectionFull>
-    </>
+    <Page
+      $isDark={isDark}
+      $absolute
+      $heigth='100vh'
+      $enableBg
+      style={{ top: 0, zIndex: -2 }}
+    >
+      <h1 style={{ textAlign: 'center', color: '#fff', marginTop: '12vh' }}>Single Post :V</h1>
+    </Page>
   )
 }

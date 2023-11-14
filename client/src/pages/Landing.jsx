@@ -1,5 +1,8 @@
 import { ToggleSliderTheme } from '../components/ToggleSliderTheme.jsx'
-import { useLoginRedirect } from '../hooks/useLoginRedirect.js'
+// import { useLoginRedirect } from '../hooks/useLoginRedirect.js'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth.js'
 import { useTheme } from '../hooks/useTheme.js'
 import { LogoPage } from '../layout/Logo/LogoPage.jsx'
 import { ButtonLink } from '../styled components/Darth-theme-Router-Links.js'
@@ -20,7 +23,16 @@ export function Landing () {
   const { isDark } = useTheme()
 
   // Verify if the user is autenticated
-  useLoginRedirect()
+  const auth = useAuth()
+  const navigate = useNavigate()
+  // useLoginRedirect()
+  useEffect(
+    () => {
+      if (auth.token) {
+        navigate('/home')
+      }
+    }, [auth.token, navigate]
+  )
 
   return (
     <>
