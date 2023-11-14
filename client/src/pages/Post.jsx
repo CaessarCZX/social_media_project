@@ -1,6 +1,6 @@
 import { useTheme } from '../hooks/useTheme'
 import {
-  ContainerArticle,
+  CenterAbosolute,
   SectionFull
 } from '../styled components/Darth-theme.js'
 
@@ -9,10 +9,10 @@ export function Post () {
 
   return (
     <>
-      <SectionFull $enableBg $isDark={isDark}>
-        <ContainerArticle $width='100%' $height='100px' $padding='1.5rem'>
-          <h1>Example</h1>
-        </ContainerArticle>
+      <SectionFull $enableBg $isDark={isDark} $absolute>
+        <CenterAbosolute>
+          hola
+        </CenterAbosolute>
       </SectionFull>
     </>
   )

@@ -36,6 +36,8 @@ export const login = (credentialAccess) => async (dispatch) => {
         success: data.msg
       }
     })
+
+    window.location.href = '/home'
   } catch (err) {
     // Show error message to client
     dispatch({

@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useLoginRedirect } from '../hooks/useLoginRedirect.js'
 import { useTheme } from '../hooks/useTheme.js'
 import { LogoPage } from '../layout/Logo/LogoPage.jsx'
 // import { manageDataForm } from '../services/login/index.js'
 import { AlertIntoForm } from '../components/AlertIntoForm.jsx'
 import { useAlert } from '../hooks/useAlert.js'
+// import { useLoginRedirect } from '../hooks/useLoginRedirect.js'
 import { register } from '../redux/actions/authActions.js'
 import { LinkS } from '../styled components/Darth-theme-Router-Links.js'
 import {
@@ -37,7 +37,7 @@ export function Register () {
   const [showOfPass, setShowOfPass] = useState(false)
 
   // Verify if the user is autenticated
-  useLoginRedirect()
+  // useLoginRedirect()
 
   // Verify if password is matching
   const handleConfirmPassword = (value) => {
