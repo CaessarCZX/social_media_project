@@ -1,19 +1,20 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { AlertSystem } from './components/AlertSystem'
-// import { ProtectedRoutes } from './components/ProtectedRoutes.jsx'
+import { ProtectedRoutes } from './components/ProtectedRoutes.jsx'
 import { useAuth } from './hooks/useAuth.js'
 import { DefaultLayout } from './layout/DefaultLayout/DefaultLayout.jsx'
 import { Home } from './pages/Home.jsx'
 import { Landing } from './pages/Landing.jsx'
 import { Login } from './pages/Login.jsx'
 import { NotFound } from './pages/NotFound.jsx'
-import { Post } from './pages/Post.jsx'
-import { Register } from './pages/Resgister.jsx'
+import { Register } from './pages/Register.jsx'
+import { SinglePost } from './pages/SinglePost.jsx'
 import { refreshToken } from './redux/actions/authActions'
 
 function App () {
+  // Redux actions
   const dispatch = useDispatch()
   const auth = useAuth()
 
@@ -33,19 +34,16 @@ function App () {
           <Route index element={<Landing />} />
 
           <Route path='/landingPage' element={<Landing />} />
-
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
 
-          {/* <Route element={<ProtectedRoutes redirecTo='/' />}>
+          <Route element={<ProtectedRoutes redirecTo='/' />}>
             <Route path='/home' element={<Home />} />
-            <Route path='/post/:id' element={<Post />} />
-          </Route> */}
+            <Route path='/post/:id' element={<SinglePost />} />
+          </Route>
 
-          <Route path='/home' element={auth.token ? <Home /> : <Landing />} />
-          <Route path='/post/:id' element={auth.token ? <Post /> : <Landing />} />
-
-          <Route path='*' element={<NotFound />} />
+          <Route path='*' element={<Navigate to='/404' replace />} />
+          <Route path='/404' element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>

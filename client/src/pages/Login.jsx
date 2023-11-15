@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-// import { useLoginRedirect } from '../hooks/useLoginRedirect.js'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth.js'
+import { useLoginRedirect } from '../hooks/useLoginRedirect.js'
 import { useTheme } from '../hooks/useTheme.js'
 import { LogoPage } from '../layout/Logo/LogoPage.jsx'
 import { login } from '../redux/actions/authActions.js'
@@ -30,16 +28,7 @@ export function Login () {
   // Show password feature
   const [showpass, setShowpass] = useState(false)
   // Verify if the user is autenticated
-  const auth = useAuth()
-  const navigate = useNavigate()
-  // useLoginRedirect()
-  useEffect(
-    () => {
-      if (auth.token) {
-        navigate('/home')
-      }
-    }, [auth.token, navigate]
-  )
+  useLoginRedirect()
 
   // Submit form data
   const handleSubmit = async (event) => {
@@ -89,6 +78,7 @@ export function Login () {
                 <Input
                   type={showpass ? 'type' : 'password'}
                   name='password'
+                  autoComplete='current-password'
                   placeholder='pass...'
                   $isDark={isDark}
                 />

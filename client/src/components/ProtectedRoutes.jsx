@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { Navigate, Outlet } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
+// import { useAuth } from '../hooks/useAuth'
 
 /*
   Protected routes need to be instantiated within a React router route component
@@ -13,9 +13,13 @@ import { useAuth } from '../hooks/useAuth'
 */
 
 export function ProtectedRoutes ({ redirecTo, children }) {
-  const auth = useAuth()
+  // const auth = useAuth()
 
-  if (!auth.token) {
+  // if (!auth) {
+  //   return <Navigate to={redirecTo} replace />
+  // }
+  const isLogin = window.localStorage.getItem('login')
+  if (!isLogin) {
     return <Navigate to={redirecTo} replace />
   }
 

@@ -3,7 +3,7 @@ import {
   Page
 } from '../styled components/Darth-theme.js'
 
-export function Post () {
+export function SinglePost () {
   const { isDark } = useTheme()
 
   return (
