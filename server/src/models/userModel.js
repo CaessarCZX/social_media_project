@@ -35,7 +35,7 @@ const userSchema = mongoose.Schema({
   },
   gender: {
     type: String,
-    default: 'non-specified'
+    default: 'no especificado'
   },
   website: {
     type: String,

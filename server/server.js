@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const cookieparser = require('cookie-parser')
 const authRouter = require('./src/routers/authRouter')
+const userRouter = require('./src/routers/userRouter')
 
 // Initialize app
 const app = express()
@@ -13,6 +14,7 @@ const app = express()
   Configuration credentials XMLHttp request by GeekNetwork in development
   !IMPORTAN: Don't forget set the configuration for origin request.
 */
+
 const corsOptions = {
   origin: 'http://localhost:5173',
   credentials: true
@@ -24,6 +26,7 @@ app.use(cookieparser())
 
 // Routes
 app.use('/api', authRouter)
+app.use('/api', userRouter)
 
 const port = process.env.PORT || 5000
 const URL = process.env.MONGO_URI

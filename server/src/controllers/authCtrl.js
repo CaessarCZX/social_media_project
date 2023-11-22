@@ -103,7 +103,6 @@ const authCtrl = {
   generateAccessToken: async (req, res) => {
     try {
       const refToken = req.cookies.refreshtoken
-      console.log(req.cookies)
 
       if (!refToken) return res.status(400).json({ msg: authErrors.userNotLogged })
 
@@ -117,6 +116,7 @@ const authCtrl = {
 
         const accessToken = createAccessToken({ id: result._id })
 
+        console.log(accessToken)
         res.json({
           accessToken,
           user
