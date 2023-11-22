@@ -3,6 +3,12 @@ import styled, { css } from 'styled-components'
 import { Margins } from './Darth-theme.js'
 import { BUTTONS as btn, DARTH_THEME_DARK_MODE as dark } from './Darth-theme.var.js'
 
+export const DefaultLink = styled(Link)`
+  font-family: inherit;
+  line-height: 1.5;
+  text-decoration: none;
+`
+
 export const LinkS = styled(Link)`
   font-family: inherit;
   line-height: 1.5;

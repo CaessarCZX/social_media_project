@@ -39,6 +39,8 @@ const DefaultFeaturesContainers = (props) => css`
   ${props.$height && css`height: ${props.$height};`}
   ${props.$maxWidth && css`max-width: ${props.$maxWidth};`}
   ${props.$maxHeight && css`max-height: ${props.$maxHeight};`}
+  ${props.$minWidth && css`min-width: ${props.$minWidth};`}
+  ${props.$minHeight && css`min-height: ${props.$minHeight};`}
   ${props.$txtCenter && css`text-align: center;`}
   ${props.$txtRight && css`text-align: right;`}
   ${props.$contCenter && css`margin: 0 auto;`}
@@ -55,7 +57,7 @@ export const Margins = (props) => css`
 `
 const setBorders = (props) => css`
   ${props.$border && css`border: ${props.$border};`}
-  ${props.$borderRadius && css`border: ${props.$borderRadius};`}
+  ${props.$borderRadius && css`border-radius: ${props.$borderRadius};`}
   ${props.$borderWidth && css`border-width: ${props.$borderWidth};`}
 `
 
@@ -77,6 +79,7 @@ const Paddings = (props) => css`
 
 const FlexSettings = (props) => css`
   ${props.$gap && css`gap: ${props.$gap};`}
+  ${props.$flex && css`flex: 1;`}
   ${props.$wrap && css`flex-wrap: wrap;`}
   ${props.$col && css`flex-direction: column;`}
   ${props.$jCenter && css`justify-content: center;`}

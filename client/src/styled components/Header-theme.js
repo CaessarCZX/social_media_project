@@ -1,5 +1,11 @@
 import styled, { css } from 'styled-components'
-import { Input } from './Darth-theme'
+import { Div, HeaderFlex, Input } from './Darth-theme'
+
+export const HeaderContainerWrapper = styled(HeaderFlex)`
+  position: absolute;
+  right: 0;
+  z-index: 7;
+`
 
 export const HeaderSearchBar = styled(Input)`
   border-radius: 100vh;
@@ -22,4 +28,26 @@ export const SearchBarPositionInnnerIcon = styled.div`
 export const HeaderWrapButton = styled.button`
   background-color: transparent;
   border: none;
+`
+
+// Header Search bar results
+export const SearchResultsWrapper = styled(Div)`
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #26222b;
+  padding: 3.5rem 0.5rem 0.5rem;
+  border-radius: 25px;
+`
+
+export const SearchResultsItemAvatarWrap = styled.picture`
+  display: block;
+  overflow: hidden;
+  max-width: 57px;
+`
+export const SearchResultsItemAvatarImg = styled.img`
+  width: 100%;
+  object-fit: cover;
 `

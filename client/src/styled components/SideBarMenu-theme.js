@@ -32,6 +32,8 @@ export const SideBarTooltip = styled.span`
 
 export const SideBarContainer = styled(ContainerAside)`
   display: flex;
+  position: fixed;
+  z-index: 7;
   flex-direction: column;
   left: 0;
   top: 0;

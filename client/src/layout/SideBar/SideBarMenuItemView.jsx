@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { IconContext } from '../../components/IconContext.jsx'
+import { useDataUser } from '../../hooks/useDataUser.js'
 import { useTheme } from '../../hooks/useTheme.js'
 import {
   LiFlex,
@@ -16,6 +17,8 @@ import {
 export function SideBarMenuItemView ({ sectionItem, isOpen }) {
   // Theme
   const { isDark } = useTheme()
+  // get User id
+  const user = useDataUser()
 
   // Sections data
   const {
@@ -31,7 +34,12 @@ export function SideBarMenuItemView ({ sectionItem, isOpen }) {
       aria-label={label}
       $aiCenter
     >
-      <WrapLink to={url}>
+      <WrapLink to={
+          name === 'Perfil'
+            ? `${url}${user._id}`
+            : url
+        }
+      >
         <SideBarMenuItemCollapse $isOpen={isOpen}>
           <IconContext icon={Icon} />
           {

@@ -1,5 +1,6 @@
 import { validateRegisterData } from '../../services/login/index.js'
 import { postDataApi } from '../../utils/fetchDataApi.js'
+// import { setToken } from '../reducers/authReducer.js'
 import { ALERT_TYPES } from './alertActions.js'
 
 export const TYPES = {
@@ -68,6 +69,11 @@ export const refreshToken = () => async (dispatch) => {
           user: data.user
         }
       })
+
+      // // update token
+      // dispatch(
+      //   setToken({ token: data.accessToken })
+      // )
 
       // Show alert to client
       dispatch({
@@ -140,6 +146,7 @@ export const register = (registerData) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   try {
     localStorage.removeItem('login')
+
     await postDataApi('logout')
     window.location.href = '/'
   } catch (err) {

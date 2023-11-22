@@ -1,6 +1,7 @@
 import { CiSettings, CiUser } from 'react-icons/ci'
 import { FaPowerOff } from 'react-icons/fa'
 import { PiHouseSimpleLight } from 'react-icons/pi'
+
 export const sectionItems = [
   {
     id: 1,
@@ -16,7 +17,7 @@ export const sectionItems = [
     shortName: 'Perfil',
     label: 'Perfil',
     Icon: CiUser,
-    url: '/profile'
+    url: '/profile/'
   },
   {
     id: 3,

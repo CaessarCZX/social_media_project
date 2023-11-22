@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { IconContext } from '../../components/IconContext.jsx'
 import { useTheme } from '../../hooks/useTheme.js'
 import { logout } from '../../redux/actions/authActions.js'
+import { setToken } from '../../redux/reducers/authReducer.js'
 import {
   LiFlex,
   MicroSubtitle,
@@ -35,7 +36,11 @@ export function SideBarMenuLogoutItemView ({ actionItem, isOpen, setColor }) {
       aria-label={label}
       $aiCenter
     >
-      <SideBarActionItemButton onClick={() => dispatch(logout())}>
+      <SideBarActionItemButton onClick={() => {
+        dispatch(setToken({ token: '' }))
+        dispatch(logout())
+      }}
+      >
         <SideBarMenuItemCollapse $isOpen={isOpen}>
           <IconContext
             icon={Icon}

@@ -16,7 +16,7 @@ export const ToastWrapp = styled.article`
   flex-direction: column;
   position: fixed;
   right: 0;
-  z-index: 7;
+  z-index: 12;
   width: 50vw;
   max-width: 270px;
   min-height: 97px;
