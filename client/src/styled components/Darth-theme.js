@@ -49,6 +49,7 @@ const DefaultFeaturesContainers = (props) => css`
   ${props.$overHidden && css`overflow: hidden;`}
   ${props.$relative && css`position: relative;`}
   ${props.$absolute && css`position: absolute;`}
+  ${props.$txtNoWrap && css`text-wrap: nowrap`}
 `
 export const Margins = (props) => css`
   ${props.$margin && css`margin: ${props.$margin};`}
@@ -192,6 +193,8 @@ export const SubtitleHighlight = styled.div`
   -webkit-text-fill-color: ${font.subtitleHighlight.gradient.webkitTextFillColor};
 
   ${(props) => props.$medium && css`font-size: ${font.subtitleHighlight.medium.size}`}
+
+  ${(props) => props.$bold && css`font-weight: 700`}
 `
 
 export const Subtitle = styled.h3`
@@ -333,6 +336,7 @@ export const Button = styled.button`
   font-size: ${btn.general.fontSize};
   font-weight: ${btn.general.fontWeight};
   justify-content: ${btn.general.justifyContent};
+  align-items: ${btn.general.alignItems};
   line-height: ${btn.general.lineHeight};
   border-style: ${btn.general.borderStyle};
   border-radius: ${btn.general.borderRadius};
@@ -476,7 +480,8 @@ export const Page = styled(Div)`
   min-height: 100vh;
 
   ${(props) => props.$enableBg && css`
-    background-image: url(${(props) => (props.$isDark ? darkBg : lightBg)});
+    /* background-image: url(${(props) => (props.$isDark ? darkBg : lightBg)}); */
+    ${(props) => props.$isDark && css`background-image: url(${darkBg});`}
     background-color: ${(props) => (props.$isDark ? dark.backgroundPrimary : light.backgroundPrimary)};
     background-position: center;
     /* background-attachment: fixed; */

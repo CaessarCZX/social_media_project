@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types'
+import { ImPencil2 } from 'react-icons/im'
 import defaultUserImg from '../../assets/defaultUserImg.svg'
+import { IconContext } from '../../components/IconContext.jsx'
 import { useDataUser } from '../../hooks/useDataUser'
 import { useTheme } from '../../hooks/useTheme'
 import { Div, DivFlex, SmallText, SubtitleHighlight, Text } from '../../styled components/Darth-theme'
@@ -144,7 +146,10 @@ export function ProfileInfoMiniCard (
               $margin='1rem 0 0'
               to={`/profile/${id}/edit`}
             >
-              Editar perfil
+              <DivFlex $aiCenter $gap='1.2rem'>
+                <IconContext size='0.97rem' icon={ImPencil2} />
+                <p>Editar Perfil</p>
+              </DivFlex>
             </ButtonLink>
           )
         }

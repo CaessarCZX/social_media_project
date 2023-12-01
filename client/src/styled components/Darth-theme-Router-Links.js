@@ -35,6 +35,7 @@ export const ButtonLink = styled(Link)`
   font-size: ${btn.general.fontSize};
   font-weight: ${btn.general.fontWeight};
   justify-content: ${btn.general.justifyContent};
+  align-items: ${btn.general.alignItems};
   line-height: ${btn.general.lineHeight};
   border-style: ${btn.general.borderStyle};
   border-radius: ${btn.general.borderRadius};

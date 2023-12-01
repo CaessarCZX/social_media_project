@@ -2,11 +2,13 @@ import styled, { css, keyframes } from 'styled-components'
 
 // Proto styles
 export const LoaderSpace = styled.div`
-  position: absolute;
-  z-index: 5;
+  position: fixed;
+  z-index: 14;
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
+
+  ${(props) => props.$black && css`background-color: #000;`}
 `
 export const LoaderWrapp = styled.svg`
   position: relative;

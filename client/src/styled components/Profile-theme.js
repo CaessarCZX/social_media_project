@@ -21,7 +21,7 @@ export const ProfileTitle = styled.div`
 // For mini card
 export const MiniCardWrap = styled(ContainerArticle)`
   border-radius: 25px;
-  `
+`
 
 export const ProfileAvatarWrap = styled.picture`
 display: block;
@@ -39,6 +39,38 @@ margin: 0 auto;
 
 export const ProfileEditAvatarWrap = styled(ProfileAvatarWrap)`
   position: relative;
+  width: 200px;
+  height: 200px;
+
+  &:hover > span {
+    opacity: 1;
+  }
+`
+
+export const UploadInputForAvatarWrap = styled.span`
+  display: block;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.57);
+  padding: 0.7rem;
+  border-radius: 14px;
+  width: 90px;
+  opacity: 0;
+
+  /* For input type 'file' */
+  & > input {
+    display: none;
+  }
+
+`
+
+export const UploadInputForAvatarLabel = styled.p`
+  font-size: 0.67rem;
+  font-weight: 700;
+  color: #cbd2de;
 `
 
 // Avatar
@@ -62,6 +94,15 @@ export const StatsCardItem = styled(ContainerArticle)`
   padding: 0.5rem 1rem;
 `
 
+export const AddFriendButton = styled(StatsCardItem)`
+  cursor: pointer;
+  border: solid 1.12px #a855f7;
+
+  &:hover {
+    background-color: rgba(168, 85, 247, 0.17) ;
+  }
+`
+
 // EditProfile
 export const EditStatsCardWrapper = styled(ContainerArticle)`
   width: 100%;
@@ -72,5 +113,12 @@ export const EditStatsCardWrapper = styled(ContainerArticle)`
 
 export const EditStatsSection = styled(Div)`
   flex: 1;
-  min-width: 300px;
+  min-width: 390px;
+`
+
+export const EditStatsItem = styled(ContainerArticle)`
+  border-radius: 25px;
+  flex: 1;
+  padding: 0.5rem 1rem;
+
 `

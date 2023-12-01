@@ -87,7 +87,8 @@ export const refreshToken = () => async (dispatch) => {
       dispatch({
         type: ALERT_TYPES.ALERT,
         payload: {
-          error: err.response.data.msg
+          error: err.response?.data?.msg,
+          badConnection: true
         }
       })
     }
@@ -145,10 +146,18 @@ export const register = (registerData) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
+    // dispatcher for loader in Out
+    dispatch({
+      type: ALERT_TYPES.ALERT,
+      payload: {
+        loaderOut: true
+      }
+    })
+
     localStorage.removeItem('login')
 
     await postDataApi('logout')
-    window.location.href = '/'
+    window.location.reload()
   } catch (err) {
     // Show error message to client
     dispatch({

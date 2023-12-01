@@ -78,7 +78,7 @@ export function Register () {
                     name='firstname'
                     placeholder={undefinedToBoolean(alert.firstname) ? alert.firstname : 'Ej: Tony...'}
                     $alertPlaceholder={undefinedToBoolean(alert.firstname)}
-                    minLength='5'
+                    minLength='2'
                     maxLength='50'
                     $isDark={isDark}
                   />
@@ -90,7 +90,7 @@ export function Register () {
                     name='lastname'
                     placeholder={undefinedToBoolean(alert.lastname) ? alert.lastname : 'Ej: Cayetano...'}
                     $alertPlaceholder={undefinedToBoolean(alert.lastname)}
-                    minLength='5'
+                    minLength='2'
                     maxLength='50'
                     $isDark={isDark}
                   />
@@ -101,7 +101,7 @@ export function Register () {
                 <Input
                   type='text'
                   name='username'
-                  placeholder={undefinedToBoolean(alert.username) ? alert.lastname : 'Ej: inSamuel77'}
+                  placeholder={undefinedToBoolean(alert.username) ? alert.lastname : 'Debe de ser min. 5 caracteres'}
                   $alertPlaceholder={undefinedToBoolean(alert.username)}
                   minLength='5'
                   maxLength='25'
@@ -115,7 +115,7 @@ export function Register () {
                   name='email'
                   placeholder={undefinedToBoolean(alert.email) ? alert.email : 'alguien@mail.com'}
                   $alertPlaceholder={undefinedToBoolean(alert.email)}
-                  minLength='10'
+                  minLength='5'
                   maxLength='50'
                   $isDark={isDark}
                 />
@@ -137,7 +137,7 @@ export function Register () {
                   type={showpass ? 'type' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder={undefinedToBoolean(alert.password) ? alert.password : 'Ej: miContraseña'}
+                  placeholder={undefinedToBoolean(alert.password) ? alert.password : 'Debe de ser min. de 8 caracteres'}
                   $alertPlaceholder={undefinedToBoolean(alert.password)}
                   minLength='8'
                   maxLength='25'
@@ -161,7 +161,7 @@ export function Register () {
                   type={showOfPass ? 'type' : 'password'}
                   value={confirmPassword}
                   onChange={(e) => handleConfirmPassword(e.target.value)}
-                  placeholder='Ej: miContraseña'
+                  placeholder='Debe de ser min. de 8 caracteres'
                   minLength='8'
                   maxLength='25'
                   $isDark={isDark}

@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
+import BadConnection from '../layout/BadConnection'
 import { Loader } from '../layout/Loader'
+import LoaderOut from '../layout/LoaderOut'
 import { Toast } from '../layout/Toast'
 import { ALERT_TYPES } from '../redux/actions/alertActions'
 
@@ -18,8 +20,10 @@ export function AlertSystem () {
   return (
     <div>
       {alert.loading && <Loader />}
+      {alert.loaderOut && <LoaderOut />}
       {alert.error && <Toast msg={{ title: 'Algo salio mal', bodyTxt: alert.error }} handleShow={closeToast} />}
       {alert.success && <Toast msg={{ title: 'Inicio exitoso', bodyTxt: alert.success }} handleShow={closeToast} />}
+      {alert.badConnection && <BadConnection />}
     </div>
   )
 }

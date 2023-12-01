@@ -51,6 +51,8 @@ db.once('open', () => {
   console.log('Conection Success')
 })
 
+// const anyIp = '0.0.0.0'
+
 // Manage request and responses from App
 app.listen(port, () => {
   console.log(`App is runnig on ${port}`)

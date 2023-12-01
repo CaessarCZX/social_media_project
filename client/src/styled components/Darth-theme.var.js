@@ -229,6 +229,7 @@ export const BUTTONS = Object.freeze({
     fontSize: '14px',
     fontWeight: '500',
     justifyContent: 'center',
+    alignItems: 'center',
     lineHeight: '1.5',
     borderStyle: 'none',
     borderRadius: '100vh',

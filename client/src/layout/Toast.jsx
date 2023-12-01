@@ -18,7 +18,7 @@ export function Toast ({ msg, handleShow }) {
   return (
     <ToastWrapp $isDark={isDark}>
       <ToastHeader>
-        <SubtitleHighlight $medium $isDark={isDark}>{title}</SubtitleHighlight>
+        <SubtitleHighlight $bold $isDark={isDark}>{title}</SubtitleHighlight>
         <ToastCloseBtn onClick={handleShow} $isDark={isDark}>&times;</ToastCloseBtn>
       </ToastHeader>
       <ToastBody>

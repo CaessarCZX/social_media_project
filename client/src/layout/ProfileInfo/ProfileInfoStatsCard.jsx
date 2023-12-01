@@ -3,10 +3,13 @@ import PropTypes from 'prop-types'
 import { BsFilePost } from 'react-icons/bs'
 import { LuUsers2 } from 'react-icons/lu'
 import { RiUserFollowLine } from 'react-icons/ri'
+import { useParams } from 'react-router-dom'
+import { useAuth } from '../../hooks/useAuth.js'
 import { useTheme } from '../../hooks/useTheme'
-import { DivFlex, Text, Title } from '../../styled components/Darth-theme'
+import { Div, DivFlex, Text, Title } from '../../styled components/Darth-theme'
 import { StatsCardWrapper } from '../../styled components/Profile-theme'
 import { TitleCase } from '../../utils/getStrings'
+import { ProfileInfoAddButton } from '../ProfileInfo/ProfileInfoAddButton.jsx'
 import { ProfileInfoStatsCardItem } from './ProfileInfoStatsCardItem'
 
 export function ProfileInfoStatsCard (
@@ -19,6 +22,10 @@ export function ProfileInfoStatsCard (
 ) {
   // Theme
   const { isDark } = useTheme()
+  // Redux
+  const auth = useAuth()
+  // User id
+  const { id } = useParams()
 
   const fullName = `${firstname} ${lastname}`
 
@@ -49,9 +56,22 @@ export function ProfileInfoStatsCard (
       $isDark={isDark}
       $padding='1.5rem'
     >
-      <Text $isDark={isDark}>Bienvenido de nuevo!!</Text>
-      <Title $small $isDark={isDark}>{TitleCase(fullName)}</Title>
       <DivFlex $jBetween>
+
+        <Div>
+          <Text $isDark={isDark}>Bienvenido de nuevo!!</Text>
+          <Title $small $isDark={isDark}>{TitleCase(fullName)}</Title>
+        </Div>
+
+        {/* TODO: check the issue with ._id property when page is reload and cache is cleaded */}
+        <Div>
+          {
+            auth && auth.user._id !== id && <ProfileInfoAddButton />
+          }
+        </Div>
+
+      </DivFlex>
+      <DivFlex $gap='1rem' $wrap $jBetween>
         {
           StatsItem.map(
             (item) => (

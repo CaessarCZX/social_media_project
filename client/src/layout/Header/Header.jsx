@@ -27,11 +27,33 @@ export function Header () {
   // For searchbar
   const [search, setSearch] = useState('')
   const [getUsers, setGetUsers] = useState([])
+  const [showResults, setShowResults] = useState(false)
 
   // Redux
   const dispatch = useDispatch()
   const auth = useAuth()
 
+  // To clean and hidden results
+  useEffect(
+    () => {
+      const handleClickOutside = (event) => {
+        const searchBar = document.getElementById('header-search-bar')
+        if (searchBar && !searchBar.contains(event.target)) {
+          setSearch('')
+          setShowResults(false)
+          setGetUsers([])
+        }
+      }
+
+      window.document.addEventListener('click', handleClickOutside)
+
+      return () => {
+        window.document.removeEventListener('click', handleClickOutside)
+      }
+    }, []
+  )
+
+  // To search users
   useEffect(
     () => {
       if (search && auth.token) {
@@ -63,12 +85,14 @@ export function Header () {
         >
           <form>
             <HeaderSearchBar
+              id='header-search-bar'
               placeholder='Buscar en GeekNet'
               $isDark={isDark}
               value={search}
               onChange={
                 (e) => {
                   setSearch(e.target.value)
+                  setShowResults(true)
                 }
               }
             />
@@ -76,11 +100,8 @@ export function Header () {
           <SearchBarPositionInnnerIcon>
             <IconContext size='1.1rem' icon={BsSearch} />
           </SearchBarPositionInnnerIcon>
-          {/* {
-            search && getUsers.length > 0 && (<HeaderSearchResults userArray={getUsers} />)
-          } */}
           {
-            search && (<HeaderSearchResults userArray={getUsers} />)
+            showResults && search && (<HeaderSearchResults idElement='header-search-results-container' userArray={getUsers} />)
           }
         </LiFlex>
 

@@ -1,15 +1,8 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import {
   DARTH_THEME_DARK_MODE as dark,
   DARTH_THEME_LIGHT_MODE as light
 } from '../styled components/Darth-theme.var'
-
-const DarthSense = [
-  `backdrop-filter: ${dark.blurBoxDefault};`,
-  `border-radius: ${dark.borderRadiusDefault};`,
-  `border: ${dark.borderPrimary};`,
-  `box-shadow: ${dark.boxShadowInsetPrim},${dark.boxShadowInsetSec};`
-].join(' ')
 
 export const ToastWrapp = styled.article`
   display: flex;
@@ -25,11 +18,7 @@ export const ToastWrapp = styled.article`
   border-radius: 1rem;
   padding: 1rem 1.2rem;
   margin: 1rem 1rem 0 0;
-
-  ${(props) => props.$isDark && css`
-    ${DarthSense}
-  `}
-
+  border: solid 1.3px #a855f7;
 `
 export const ToastHeader = styled.header`
   display: flex;

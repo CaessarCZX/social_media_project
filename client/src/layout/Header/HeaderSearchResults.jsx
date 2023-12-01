@@ -3,9 +3,9 @@ import { DefaultLink } from '../../styled components/Darth-theme-Router-Links.js
 import { SearchResultsWrapper } from '../../styled components/Header-theme'
 import { HeaderSearchResultItem } from './HeaderSearchResultItem.jsx'
 
-export function HeaderSearchResults ({ userArray }) {
+export function HeaderSearchResults ({ userArray, idElement }) {
   return (
-    <SearchResultsWrapper>
+    <SearchResultsWrapper id={idElement}>
       {
         userArray.map(
           (user) => (
@@ -25,5 +25,6 @@ export function HeaderSearchResults ({ userArray }) {
 }
 
 HeaderSearchResults.propTypes = {
-  userArray: PropTypes.array.isRequired
+  userArray: PropTypes.array.isRequired,
+  idElement: PropTypes.string.isRequired
 }

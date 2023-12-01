@@ -22,6 +22,36 @@ const userCtrl = {
     } catch (err) {
       return res.status(500).json({ msg: err.message })
     }
+  },
+  updateUser: async (req, res) => {
+    try {
+      const {
+        firstname,
+        lastname,
+        address,
+        website,
+        gender,
+        phone,
+        story
+      } = req.body
+
+      if (!firstname) return res.status(500).json({ msg: 'Tienes que ingresar al menos un nombre' })
+      if (!lastname) return res.status(500).json({ msg: 'Tienes que ingresar al menos un apellido' })
+
+      await Users.findOneAndUpdate({ _id: req.user_id }, {
+        firstname,
+        lastname,
+        address,
+        website,
+        gender,
+        phone,
+        story
+      })
+
+      res.json({ msg: 'Datos actualizados con exito' })
+    } catch (err) {
+      return res.status(500).json({ msg: err.message })
+    }
   }
 }
 

@@ -1,3 +1,5 @@
+import { maxUserDataValues as maxVal, minUserDataValues as minVal } from '../user-values/userValues.js'
+
 // const validMessagesEN = {
 //   firstnameExists: 'Please add your firstname',
 //   firstnameLength: 'Length should be less than 90 characters',
@@ -27,13 +29,14 @@ const validMessagesEs = {
 }
 
 export const validateRegisterData = (inputUserData) => {
-  // Rules
-  const MAX_LENGTH_FIRSTNAME = 90
-  const MAX_LENGTH_LASTNAME = 90
-  const MAX_LENGTH_USERNAME = 30
-  const MIN_LENGTH_PASSWORD = 8
-  // Get user data
-  const { firstname, lastname, username, email, password, confirmPassword } = inputUserData
+  const {
+    firstname,
+    lastname,
+    username,
+    email,
+    password,
+    confirmPassword
+  } = inputUserData
 
   const msg = { ...validMessagesEs }
 
@@ -41,13 +44,13 @@ export const validateRegisterData = (inputUserData) => {
 
   if (!firstname) {
     errorMsg.firstname = msg.firstnameExists
-  } else if (firstname.length > MAX_LENGTH_FIRSTNAME) {
+  } else if (firstname.length > maxVal.MAX_LENGTH_FIRSTNAME) {
     errorMsg.firstname = msg.firstnameLength
   }
 
   if (!lastname) {
     errorMsg.lastname = msg.lastnameExists
-  } else if (lastname.length > MAX_LENGTH_LASTNAME) {
+  } else if (lastname.length > maxVal.MAX_LENGTH_LASTNAME) {
     errorMsg.lastname = msg.lastnameLength
   }
 
@@ -55,7 +58,7 @@ export const validateRegisterData = (inputUserData) => {
 
   if (!normalizeUserName) {
     errorMsg.username = msg.usernameExists
-  } else if (normalizeUserName.length > MAX_LENGTH_USERNAME) {
+  } else if (normalizeUserName.length > maxVal.MAX_LENGTH_USERNAME) {
     errorMsg.username = msg.usernameLength
   }
 
@@ -67,7 +70,7 @@ export const validateRegisterData = (inputUserData) => {
 
   if (!password) {
     errorMsg.password = msg.passwordExists
-  } else if (password.length < MIN_LENGTH_PASSWORD) {
+  } else if (password.length < minVal.MIN_LENGTH_PASSWORD) {
     errorMsg.password = msg.passwordLength
   }
 

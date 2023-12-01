@@ -40,3 +40,7 @@ export const getProfileUsers = ({ users, id, auth }) => async (dispatch) => {
     }
   }
 }
+
+export const updateProfile = ({ editData, newAvatar }) => async (dispatch) => {
+
+}
