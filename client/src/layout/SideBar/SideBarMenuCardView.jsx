@@ -29,7 +29,7 @@ export function SideBarMenuCardView ({ isOpen }) {
     <ArticleFlex $col $padding='0.7rem' $margin='0.5rem 0 0'>
       <SideBarWrapProfileImg>
         <SideBarProfileImg
-          src={defaultImg || avatar}
+          src={avatar || defaultImg}
           alt='perfil de displayName'
         />
       </SideBarWrapProfileImg>

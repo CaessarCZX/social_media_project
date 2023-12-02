@@ -31,6 +31,7 @@ const userCtrl = {
         address,
         website,
         gender,
+        avatar,
         phone,
         story
       } = req.body
@@ -38,18 +39,28 @@ const userCtrl = {
       if (!firstname) return res.status(500).json({ msg: 'Tienes que ingresar al menos un nombre' })
       if (!lastname) return res.status(500).json({ msg: 'Tienes que ingresar al menos un apellido' })
 
-      await Users.findOneAndUpdate({ _id: req.user_id }, {
+      const existingUser = await Users.findById(req.body._id)
+      if (!existingUser) {
+        return res.status(500).json({ msg: 'Usuario no encontrado' })
+      }
+
+      // !IMPORTANT: When middleware is availabe
+      // TODO:
+      // Change how to use ._id when token is fine, from (req.body._id) to (req.user._id) instead
+      await Users.findOneAndUpdate({ _id: req.body._id }, {
         firstname,
         lastname,
         address,
         website,
         gender,
+        avatar,
         phone,
         story
       })
 
       res.json({ msg: 'Datos actualizados con exito' })
     } catch (err) {
+      console.error(err)
       return res.status(500).json({ msg: err.message })
     }
   }

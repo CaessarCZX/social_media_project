@@ -17,6 +17,7 @@ import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import defaultUserImg from '../assets/defaultUserImg.svg'
 import { IconContext } from '../components/IconContext.jsx'
+import { useAuth } from '../hooks/useAuth.js'
 import { useDataUser } from '../hooks/useDataUser.js'
 import { useTheme } from '../hooks/useTheme.js'
 import { ALERT_TYPES } from '../redux/actions/alertActions.js'
@@ -44,6 +45,7 @@ export function EditProfile () {
   // Redux
   const dispatch = useDispatch()
   const currentUser = useDataUser()
+  const auth = useAuth()
 
   // Avatar and user data context
   const { id } = useParams()
@@ -108,7 +110,9 @@ export function EditProfile () {
     event.preventDefault()
     dispatch(
       updateProfile({
-        editData, newAvatar
+        editData,
+        newAvatar,
+        auth
       })
     )
   }

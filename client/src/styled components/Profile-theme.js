@@ -117,8 +117,8 @@ export const EditStatsSection = styled(Div)`
 `
 
 export const EditStatsItem = styled(ContainerArticle)`
-  border-radius: 25px;
+  border-radius: 15px;
   flex: 1;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.3rem;
 
 `

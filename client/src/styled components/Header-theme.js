@@ -46,8 +46,10 @@ export const SearchResultsItemAvatarWrap = styled.picture`
   display: block;
   overflow: hidden;
   max-width: 57px;
+  border-radius: 50%;
 `
 export const SearchResultsItemAvatarImg = styled.img`
   width: 100%;
   object-fit: cover;
+  scale: 1.1;
 `

@@ -66,7 +66,7 @@ export function ProfileInfoStatsCard (
         {/* TODO: check the issue with ._id property when page is reload and cache is cleaded */}
         <Div>
           {
-            auth && auth.user._id !== id && <ProfileInfoAddButton />
+            auth && auth.user?._id && auth.user._id !== id && <ProfileInfoAddButton />
           }
         </Div>
 
