@@ -3,8 +3,15 @@ const Users = require('../models/userModel')
 const userCtrl = {
   searchUsers: async (req, res) => {
     try {
-      const users = await Users.find({ username: { $regex: req.query.username } }).limit(10)
-        .select('firstname lastname username avatar')
+      const regex = new RegExp(req.query.username, 'i')
+
+      const users = await Users.find({
+        $or: [
+          { username: regex },
+          { firstname: regex },
+          { lastname: regex }
+        ]
+      }).limit(10).select('firstname lastname username avatar')
 
       res.json({ users })
     } catch (err) {
