@@ -1,31 +1,32 @@
-import { MdPersonAddAlt } from 'react-icons/md'
+import PropTypes from 'prop-types'
+import { MdPersonAdd } from 'react-icons/md'
 import { IconContext } from '../../components/IconContext'
 import { useTheme } from '../../hooks/useTheme'
 import { Div, DivFlex, SubtitleHighlight } from '../../styled components/Darth-theme'
 import { AddFriendButton } from '../../styled components/Profile-theme'
 
-export function ProfileInfoAddButton () {
+export function FollowBtn ({ addAction }) {
   // Theme
   const { isDark } = useTheme()
-
-  const handleFriend = () => {
-    console.log('add-friend')
-  }
 
   return (
     <AddFriendButton
       $isDark={isDark}
-      onClick={handleFriend}
+      onClick={addAction}
     >
       <DivFlex
         $gap='0.7rem'
         $aiCenter
       >
-        <IconContext icon={MdPersonAddAlt} />
-        <Div $width='130px'>
-          <SubtitleHighlight>Agregar amigo</SubtitleHighlight>
+        <IconContext color='#a855f7' icon={MdPersonAdd} />
+        <Div>
+          <SubtitleHighlight>Seguir</SubtitleHighlight>
         </Div>
       </DivFlex>
     </AddFriendButton>
   )
+}
+
+FollowBtn.propTypes = {
+  addAction: PropTypes.func.isRequired
 }

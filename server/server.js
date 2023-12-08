@@ -5,6 +5,7 @@ const cors = require('cors')
 const cookieparser = require('cookie-parser')
 const authRouter = require('./src/routers/authRouter')
 const userRouter = require('./src/routers/userRouter')
+const postRouter = require('./src/routers/postRouter')
 
 // Initialize app
 const app = express()
@@ -27,9 +28,11 @@ app.use(cookieparser())
 // Routes
 app.use('/api', authRouter)
 app.use('/api', userRouter)
+app.use('/api', postRouter)
 
 const port = process.env.PORT || 5000
 const URL = process.env.MONGO_URI
+// const DEVELOP_URL = process.env.MONGO_DEVELOPMENT_URI
 
 // Connect with MongoDB through Mongoose
 mongoose.connect(

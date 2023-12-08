@@ -49,8 +49,7 @@ export function Post ({
         isImg && (
           <DivFlex $margin='0.5rem 0 0' $height='450px'>
             <img src={postImg} style={{ width: '100%', objectFit: 'cover' }} alt='image' />
-          </DivFlex>
-        )
+          </DivFlex>)
       }
 
       <DivFlex

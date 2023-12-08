@@ -20,6 +20,6 @@ export function AlertIntoForm ({ value = false, children }) {
 }
 
 AlertIntoForm.propTypes = {
-  value: PropTypes.bool.isRequired,
+  value: PropTypes.bool,
   children: PropTypes.any.isRequired
 }

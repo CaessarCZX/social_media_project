@@ -20,8 +20,8 @@ const userCtrl = {
   },
   getUser: async (req, res) => {
     try {
-      const user = await Users.findOne({ _id: req.params.id })
-        .select('-password')
+      const user = await Users.findOne({ _id: req.params.id }).select('-password')
+        .populate('friends following', '-password')
 
       if (!user) return res.status(400).json({ msg: 'No user exists' })
 
@@ -66,6 +66,50 @@ const userCtrl = {
       })
 
       res.json({ msg: 'Datos actualizados con exito' })
+    } catch (err) {
+      console.error(err)
+      return res.status(500).json({ msg: err.message })
+    }
+  },
+  follow: async (req, res) => {
+    try {
+      // Chech if already followed this user
+      const user = await Users.find({ _id: req.params.id, friends: req.body._id })
+      if (user.length > 0) return res.status(400).json({ msg: 'Ya estas siguiendo a este usuario' })
+
+      const followedUser = req.body.followedUser
+
+      // Update data of the current user
+      await Users.findOneAndUpdate({ _id: req.params.id }, {
+        $push: { friends: req.body._id }
+      }, { new: true })
+
+      // // Update data of the followed user
+      await Users.findOneAndUpdate({ _id: req.body._id }, {
+        $push: { following: req.params.id }
+      }, { new: true })
+
+      res.json({ msg: `Has seguido a ${followedUser.username}` })
+    } catch (err) {
+      console.error(err)
+      return res.status(500).json({ msg: err.message })
+    }
+  },
+  unfollow: async (req, res) => {
+    try {
+      const unfollowUser = req.body.followedUser
+
+      // Update data of the current user
+      await Users.findOneAndUpdate({ _id: req.params.id }, {
+        $pull: { friends: req.body._id }
+      }, { new: true })
+
+      // Update data of the followed user
+      await Users.findOneAndUpdate({ _id: req.body._id }, {
+        $pull: { following: req.params.id }
+      }, { new: true })
+
+      res.json({ msg: `Has dejado de seguir a ${unfollowUser.username}` })
     } catch (err) {
       console.error(err)
       return res.status(500).json({ msg: err.message })

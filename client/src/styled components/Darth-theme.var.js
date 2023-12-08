@@ -120,6 +120,12 @@ export const FONT_SETTINGS = Object.freeze({
     element: 'h4',
     lineHeight: '1.5'
   },
+  subtitleMicro: {
+    size: '14px',
+    weight: '700',
+    element: 'h3',
+    lineHeight: '1.5'
+  },
   textLarge: {
     size: '18px',
     weight: '300',

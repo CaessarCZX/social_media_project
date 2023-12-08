@@ -28,7 +28,12 @@ export const DarthSenseLight = [
   `border: ${light.borderPrimary};`,
   `box-shadow: ${light.boxShadowInsetPrim},${light.boxShadowInsetSec};`
 ].join('')
+
+/* -------------------------------------------- */
+/*                   Displays                   */
+/* -------------------------------------------- */
 const DisplayFlex = 'display: flex;'
+const DisplayGrid = 'display: grid;'
 
 /* -------------------------------------------- */
 /*              Conditional Props               */
@@ -49,7 +54,7 @@ const DefaultFeaturesContainers = (props) => css`
   ${props.$overHidden && css`overflow: hidden;`}
   ${props.$relative && css`position: relative;`}
   ${props.$absolute && css`position: absolute;`}
-  ${props.$txtNoWrap && css`text-wrap: nowrap`}
+  ${props.$txtNoWrap && css`text-wrap: nowrap;`}
 `
 export const Margins = (props) => css`
   ${props.$margin && css`margin: ${props.$margin};`}
@@ -96,10 +101,10 @@ const FlexSettings = (props) => css`
   ${props.$acAround && css`align-content: space-around;`}
   ${props.$aiEvenly && css`align-content: space-evenly;`}
   ${props.$aiCenter && css`align-items: center;`}
-  ${props.$aiStart && css`align-content: flex-start;`}
-  ${props.$aiEnd && css`align-content: flex-end;`}
-  ${props.$aiStretch && css`align-content: stretch;`}
-  ${props.$aiBaseline && css`align-content: baseline;`}
+  ${props.$aiStart && css`align-items: flex-start;`}
+  ${props.$aiEnd && css`align-items: flex-end;`}
+  ${props.$aiStretch && css`align-items: stretch;`}
+  ${props.$aiBaseline && css`align-items: baseline;`}
 `
 
 const ItemOnFlexSettings = (props) => css`
@@ -192,9 +197,9 @@ export const SubtitleHighlight = styled.div`
   -webkit-background-clip: ${font.subtitleHighlight.gradient.webkitBackgroundClip};  
   -webkit-text-fill-color: ${font.subtitleHighlight.gradient.webkitTextFillColor};
 
-  ${(props) => props.$medium && css`font-size: ${font.subtitleHighlight.medium.size}`}
+  ${(props) => props.$medium && css`font-size: ${font.subtitleHighlight.medium.size};`}
 
-  ${(props) => props.$bold && css`font-weight: 700`}
+  ${(props) => props.$bold && css`font-weight: 700;`}
 `
 
 export const Subtitle = styled.h3`
@@ -211,8 +216,16 @@ export const Subtitle = styled.h3`
   font-weight: ${font.subtitleMedium.weight};
   line-height: ${font.subtitleMedium.lineHeight};
   `}
+
+  /* Micro subtitle*/
+  ${(props) => props.$micro && css`
+  font-size: ${font.subtitleMicro.size};
+  font-weight: ${font.subtitleMicro.weight};
+  line-height: ${font.subtitleMicro.lineHeight};
+  `}
 `
 
+// Simple version of micro-subtitle
 export const MicroSubtitle = styled.h4`
 
   /* Default Small subtitle */
@@ -451,6 +464,13 @@ export const LiFlex = styled(Li)`
   ${FlexSettings}
 `
 
+/* -------------------------------------------- */
+/*           Semantic Grid Containers           */
+/* -------------------------------------------- */
+
+export const ArticleGrid = styled(Article)`
+  ${DisplayGrid}  
+`
 // ---------- SPECIFIC CONTAINER FLEX --------------
 export const SectionFull = styled(SectionFlex)`
   padding: 1.5rem;

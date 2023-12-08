@@ -7,3 +7,15 @@ export const undefinedToBoolean = (value) => {
   const valueMiddleware = value !== undefined
   return valueMiddleware
 }
+
+export const FormatRightPlacesOfDecimal = (decimal, placesToShow) => {
+  return (Math.round(decimal * 100) / 100).toFixed(placesToShow)
+}
+
+export const ConvertBytesToKiloBytes = (byteNumber) => byteNumber / 1024
+
+export const StringFormatedBytesToKiloBytes = (byteNumber) => {
+  const convertion = ConvertBytesToKiloBytes(byteNumber)
+  const FormatingNumber = FormatRightPlacesOfDecimal(convertion)
+  return `${FormatingNumber} kb`
+}

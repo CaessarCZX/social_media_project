@@ -39,7 +39,7 @@ export const SearchResultsWrapper = styled(Div)`
   right: 0;
   background-color: #26222b;
   padding: 3.5rem 0.5rem 0.5rem;
-  border-radius: 25px;
+  border-radius: 18px;
 `
 
 export const SearchResultsItemAvatarWrap = styled.picture`

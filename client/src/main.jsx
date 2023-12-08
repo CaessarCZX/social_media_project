@@ -7,10 +7,12 @@ import { DataProvider } from './redux/DataProvider.jsx'
 import './styles/index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <ThemeProvider>
-    <DataProvider>
-      <App />
-    </DataProvider>
-  </ThemeProvider>
+  <React.StrictMode>
+    <ThemeProvider>
+      <DataProvider>
+        <App />
+      </DataProvider>
+    </ThemeProvider>
+  </React.StrictMode>
 
 )

@@ -9,15 +9,18 @@ import { useTheme } from '../../hooks/useTheme'
 import { Div, DivFlex, Text, Title } from '../../styled components/Darth-theme'
 import { StatsCardWrapper } from '../../styled components/Profile-theme'
 import { TitleCase } from '../../utils/getStrings'
-import { ProfileInfoAddButton } from '../ProfileInfo/ProfileInfoAddButton.jsx'
+import { ManageFollowButtons } from './ManageFollowButtons.jsx'
 import { ProfileInfoStatsCardItem } from './ProfileInfoStatsCardItem'
 
 export function ProfileInfoStatsCard (
   {
     firstname,
     lastname,
-    counterFriends,
-    counterFollow
+    counterYourFollowers,
+    counterFollowed,
+    currentUser: user,
+    isSelfUser,
+    contentActivator
   }
 ) {
   // Theme
@@ -32,22 +35,28 @@ export function ProfileInfoStatsCard (
   // Items
   const StatsItem = [
     {
-      id: 'stats-item-friends',
-      name: 'amigos',
-      counter: counterFriends,
-      Icon: RiUserFollowLine
+      id: 'stats-item-your-followers',
+      name: isSelfUser ? 'Te siguen' : 'Lo siguen',
+      counter: counterYourFollowers,
+      Icon: RiUserFollowLine,
+      contentActivator,
+      activeSpaceName: 'followers'
     },
     {
       id: 'stats-item-posts',
-      name: 'publicaciones',
+      name: 'Publicaciones',
       counter: '2',
-      Icon: BsFilePost
+      Icon: BsFilePost,
+      contentActivator,
+      activeSpaceName: 'post'
     },
     {
       id: 'stats-item-follow',
-      name: 'seguidos',
-      counter: counterFollow,
-      Icon: LuUsers2
+      name: isSelfUser ? 'Tus seguidos' : 'Sus seguidos',
+      counter: counterFollowed,
+      Icon: LuUsers2,
+      contentActivator,
+      activeSpaceName: 'followed'
     }
   ]
 
@@ -66,7 +75,7 @@ export function ProfileInfoStatsCard (
         {/* TODO: check the issue with ._id property when page is reload and cache is cleaded */}
         <Div>
           {
-            auth && auth.user?._id && auth.user._id !== id && <ProfileInfoAddButton />
+            auth && auth.user?._id && auth.user._id !== id && <ManageFollowButtons currentUser={user} />
           }
         </Div>
 
@@ -80,6 +89,8 @@ export function ProfileInfoStatsCard (
                 name={item.name}
                 counter={item.counter}
                 icon={item.Icon}
+                functionActivation={item.contentActivator}
+                activeSpaceName={item?.activeSpaceName}
               />
             )
           )
@@ -92,6 +103,9 @@ export function ProfileInfoStatsCard (
 ProfileInfoStatsCard.propTypes = {
   firstname: PropTypes.string.isRequired,
   lastname: PropTypes.string.isRequired,
-  counterFriends: PropTypes.string.isRequired,
-  counterFollow: PropTypes.string.isRequired
+  counterYourFollowers: PropTypes.string.isRequired,
+  counterFollowed: PropTypes.string.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  isSelfUser: PropTypes.bool.isRequired,
+  contentActivator: PropTypes.func.isRequired
 }

@@ -3,7 +3,7 @@ import { postDataApi } from '../../utils/fetchDataApi.js'
 // import { setToken } from '../reducers/authReducer.js'
 import { ALERT_TYPES } from './alertActions.js'
 
-export const TYPES = {
+export const AUTH_TYPES = {
   AUTH: 'AUTH'
 }
 
@@ -20,7 +20,7 @@ export const login = (credentialAccess) => async (dispatch) => {
     // Get user data from back-end
     const { data } = await postDataApi('login', credentialAccess)
     dispatch({
-      type: TYPES.AUTH,
+      type: AUTH_TYPES.AUTH,
       payload: {
         token: data.accessToken,
         user: data.user
@@ -63,7 +63,7 @@ export const refreshToken = () => async (dispatch) => {
       // Get the cookie from back-end
       const { data } = await postDataApi('refresh_token')
       dispatch({
-        type: TYPES.AUTH,
+        type: AUTH_TYPES.AUTH,
         payload: {
           token: data.accessToken,
           user: data.user
@@ -116,7 +116,7 @@ export const register = (registerData) => async (dispatch) => {
     // Send user data to back-end and get response
     const { data } = await postDataApi('register', registerData)
     dispatch({
-      type: TYPES.AUTH,
+      type: AUTH_TYPES.AUTH,
       payload: {
         token: data.accessToken,
         user: data.user

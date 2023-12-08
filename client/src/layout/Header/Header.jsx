@@ -87,6 +87,7 @@ export function Header () {
             <HeaderSearchBar
               id='header-search-bar'
               placeholder='Buscar en GeekNet'
+              autoComplete='off'
               $isDark={isDark}
               value={search}
               onChange={

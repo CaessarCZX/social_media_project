@@ -22,7 +22,7 @@ export function AlertSystem () {
       {alert.loading && <Loader />}
       {alert.loaderOut && <LoaderOut />}
       {alert.error && <Toast msg={{ title: 'Algo salio mal', bodyTxt: alert.error }} handleShow={closeToast} />}
-      {alert.success && <Toast msg={{ title: 'Inicio exitoso', bodyTxt: alert.success }} handleShow={closeToast} />}
+      {alert.success && <Toast msg={{ title: 'Enhorabuena!', bodyTxt: alert.success }} handleShow={closeToast} />}
       {alert.badConnection && <BadConnection />}
     </div>
   )

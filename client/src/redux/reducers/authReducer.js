@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { TYPES } from '../actions/authActions.js'
+import { AUTH_TYPES } from '../actions/authActions.js'
 
 // Reducer for Authentication in redux global store
 const initialState = {}
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case TYPES.AUTH:
+    case AUTH_TYPES.AUTH:
       return action.payload
     default:
       return state

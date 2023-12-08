@@ -4,11 +4,14 @@ import { useTheme } from '../../hooks/useTheme.js'
 import { DivFlex, Subtitle, Text } from '../../styled components/Darth-theme'
 import { StatsCardItem } from '../../styled components/Profile-theme.js'
 
-export function ProfileInfoStatsCardItem ({ name, counter, icon: Icon }) {
+export function ProfileInfoStatsCardItem ({ name, counter, icon: Icon, functionActivation, activeSpaceName }) {
   // Theme
   const { isDark } = useTheme()
   return (
-    <StatsCardItem $isDark={isDark}>
+    <StatsCardItem
+      $isDark={isDark}
+      onClick={() => functionActivation(activeSpaceName)}
+    >
       <DivFlex $aiCenter $gap='1rem'>
         <IconContext
           icon={Icon}
@@ -25,5 +28,7 @@ export function ProfileInfoStatsCardItem ({ name, counter, icon: Icon }) {
 ProfileInfoStatsCardItem.propTypes = {
   name: PropTypes.string.isRequired,
   counter: PropTypes.string.isRequired,
-  icon: PropTypes.func.isRequired
+  icon: PropTypes.func.isRequired,
+  functionActivation: PropTypes.func.isRequired,
+  activeSpaceName: PropTypes.string.isRequired
 }
