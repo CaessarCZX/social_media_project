@@ -6,11 +6,13 @@ import { useDispatch } from 'react-redux'
 import defaultUserImg from '../../assets/defaultUserImg.svg'
 import { IconContext } from '../../components/IconContext'
 import { useAuth } from '../../hooks/useAuth'
+import { useStatus } from '../../hooks/useStatus.js'
 import { useTheme } from '../../hooks/useTheme'
 import { ALERT_TYPES } from '../../redux/actions/alertActions'
-import { createPost } from '../../redux/actions/postActions.js'
+import { createPost, updatePost } from '../../redux/actions/postActions.js'
+import { maxPostValues as max } from '../../services/post-values/postValues.js'
 import { JumpItem, RotableItem } from '../../styled components/Animation-containers'
-import { ArticleGrid, Div, DivFlex, LiFlex, SmallText, Subtitle, UlFlex } from '../../styled components/Darth-theme'
+import { ArticleGrid, Div, DivFlex, LiFlex, SmallText, Subtitle, TextAlert, Title, UlFlex } from '../../styled components/Darth-theme'
 import { DropShadowOutset } from '../../styled components/IluminationShadows-containers'
 import {
   PostBuilderAvatarImg,
@@ -20,6 +22,7 @@ import {
   PostBuilderDiscartBtn,
   PostBuilderPostBtn,
   PostBuilderTextArea,
+  // PostBuilderUpdateBtn,
   PostBuilderUploadImageWrap,
   PostBuilderWrap
 } from '../../styled components/PostBuilder-theme'
@@ -40,6 +43,15 @@ export function PostBuilder () {
   // Post content
   const [postBody, setPostBody] = useState('')
   const [postImages, setPostImages] = useState('')
+  // const [isNewImage, setIsNewImage] = useState(false)
+
+  // useEffect(
+  //   () => {
+  //     if (!postImages) {
+  //       setIsNewImage(true)
+  //     }
+  //   }, [postImages]
+  // )
 
   // TODO: Try to update to accept multiple images for collection post
   // For images
@@ -62,6 +74,30 @@ export function PostBuilder () {
     }, [postBody.length]
   )
 
+  // Edit post
+  const status = useStatus()
+  const [enableEdit, setEnableEdit] = useState(false)
+  useEffect(
+    () => {
+      if (status.edit) {
+        setEnableEdit(status.edit)
+        setPostBody(status.content)
+        setPostImages(status.images[0])
+      }
+    }, [status]
+  )
+
+  // DiscartChanges
+  const handleDiscart = () => {
+    setPostBody('')
+    setPostImages('')
+    dispatch({
+      type: ALERT_TYPES.STATUS,
+      payload: false
+    })
+    setEnableEdit(false)
+  }
+
   // Submit post
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -75,19 +111,35 @@ export function PostBuilder () {
       })
     }
 
-    dispatch(createPost({
-      content: postBody,
-      images: postImages,
-      auth
+    if (enableEdit) {
+      dispatch(updatePost({
+        content: postBody,
+        images: postImages,
+        status,
+        auth
+      }
+      ))
+      dispatch({
+        type: ALERT_TYPES.STATUS,
+        payload: false
+      })
+    } else {
+      dispatch(createPost({
+        content: postBody,
+        images: postImages,
+        auth
+      }
+      ))
     }
-    ))
 
-    setPostBody('')
-    setPostImages('')
+    handleDiscart()
   }
 
   return (
-    <PostBuilderWrap $width='100%' $padding='0.7rem' $isDark={isDark}>
+    <PostBuilderWrap $width='100%' $padding='0.7rem' $enableEdit={enableEdit} $isDark={isDark}>
+      {
+        enableEdit && <Title $medium $isDark>Editar Publicación</Title>
+      }
       <form onSubmit={handleSubmit}>
 
         <DivFlex $aiStart $gap='1.5rem'>
@@ -109,37 +161,49 @@ export function PostBuilder () {
               placeholder={postImages ? 'Ingresa una descripción a la imagen' : '¿En qué estas pesando?'}
               $isDark={isDark}
               value={postBody}
+              maxLength={152}
               onChange={(event) => setPostBody(event.target.value)}
             />
             <PostBuilderCounterTextArea>
-              <SmallText $isDark={isDark}>{`${postBody.length}/152`}</SmallText>
+              {
+                postBody.length >= max.MAX_CONTENT_POST
+                  ? <TextAlert>MAX</TextAlert>
+                  : <SmallText $isDark={isDark}>{`${postBody.length}/${max.MAX_CONTENT_POST}`}</SmallText>
+              }
             </PostBuilderCounterTextArea>
           </Div>
 
         </DivFlex>
         {
-            postImages && (
-              <DivFlex $col>
-                <DivFlex $jBetween>
-                  <SmallText $isDark={isDark}>Imágenes cargadas:</SmallText>
-                  <PostBuilderDeleteImageBtn
-                    onClick={() => setPostImages('')}
-                  >Eliminar imagen
-                  </PostBuilderDeleteImageBtn>
-                </DivFlex>
-                <UlFlex $gap='1rem' $pBlock='0.7rem'>
-                  <LiFlex $maxWidth='50px' $maxHeight='50px' $overHidden>
-                    <img style={{ width: '100%', objectFit: 'cover' }} src={URL.createObjectURL(postImages)} alt='nueva imagen para post' />
-                  </LiFlex>
-                  <LiFlex $col>
-                    <SmallText $bold $isDark={isDark}>{`nombre de la imagen: ${postImages.name}`}</SmallText>
-                    <SmallText $bold $isDark={isDark}>{`Peso: ${StringFormatedBytesToKiloBytes(postImages.size)}`}</SmallText>
-                    <SmallText $bold $isDark={isDark}>{`Tipo: ${postImages.type.split('/')[1]}`}</SmallText>
-                  </LiFlex>
-                </UlFlex>
+          postImages && (
+            <DivFlex $col>
+              <DivFlex $jBetween>
+                <SmallText $isDark={isDark}>Imágenes cargadas:</SmallText>
+                <PostBuilderDeleteImageBtn
+                  onClick={() => setPostImages('')}
+                >Eliminar imagen
+                </PostBuilderDeleteImageBtn>
               </DivFlex>
-            )
-          }
+              <UlFlex $gap='1rem' $pBlock='0.7rem'>
+                <LiFlex $maxWidth='50px' $maxHeight='50px' $overHidden>
+                  <img style={{ width: '100%', objectFit: 'cover' }} src={status.edit ? postImages?.secure_url : URL.createObjectURL(postImages)} alt='nueva imagen para post' />
+                </LiFlex>
+                <LiFlex $col>
+                  {
+                    enableEdit
+                      ? (<SmallText $bold $isDark={isDark}>Imagen actual</SmallText>)
+                      : (
+                        <>
+                          <SmallText $bold $isDark={isDark}>{`nombre de la imagen: ${postImages?.name}`}</SmallText>
+                          <SmallText $bold $isDark={isDark}>{`Peso: ${StringFormatedBytesToKiloBytes(postImages?.size)}`}</SmallText>
+                          <SmallText $bold $isDark={isDark}>{`Tipo: ${postImages?.type.split('/')[1]}`}</SmallText>
+                        </>)
+                    }
+                </LiFlex>
+              </UlFlex>
+            </DivFlex>
+          )
+        }
         <DivFlex $aiCenter $jBetween>
 
           <Div $mInline='0.5rem'>
@@ -157,28 +221,47 @@ export function PostBuilder () {
             <DivFlex $gap='1rem'>
               {
                 (postBody.length > 0 || postImages !== '') && (
-                  <PostBuilderDiscartBtn onClick={() => {
-                    setPostBody('')
-                    setPostImages('')
-                  }}
-                  >
+                  <PostBuilderDiscartBtn onClick={handleDiscart}>
                     <DivFlex $aiCenter $gap='0.5rem'>
                       <RotableItem>
                         <FaRedoAlt color='#fff' />
                       </RotableItem>
-                      <Subtitle $micro $isDark>Descartar post</Subtitle>
+                      <Subtitle $micro $isDark>{enableEdit ? 'Descartar edición' : 'Descartar post'}</Subtitle>
                     </DivFlex>
                   </PostBuilderDiscartBtn>
                 )
               }
               <PostBuilderPostBtn disabled={enablePost} type='submit'>
                 <DivFlex $aiCenter $gap='0.5rem'>
-                  <Subtitle $micro $isDark>Publicar</Subtitle>
+                  <Subtitle $micro $isDark>{enableEdit ? 'Actualizar Publición' : 'Publicar'}</Subtitle>
                   <ArticleGrid>
                     <MdSend color='#fff' />
                   </ArticleGrid>
                 </DivFlex>
               </PostBuilderPostBtn>
+              {/* {
+                enableEdit
+                  ? (
+                    <PostBuilderUpdateBtn disabled={enablePost}>
+                      <DivFlex $aiCenter $gap='0.5rem'>
+                        <Subtitle $micro $isDark>Actualizar post</Subtitle>
+                        <ArticleGrid>
+                          <MdSend color='#fff' />
+                        </ArticleGrid>
+                      </DivFlex>
+                    </PostBuilderUpdateBtn>)
+                  : (
+                    <PostBuilderPostBtn disabled={enablePost} type='submit'>
+                      <DivFlex $aiCenter $gap='0.5rem'>
+                        <Subtitle $micro $isDark>Publicar</Subtitle>
+                        <ArticleGrid>
+                          <MdSend color='#fff' />
+                        </ArticleGrid>
+                      </DivFlex>
+                    </PostBuilderPostBtn>
+                    )
+              } */}
+
             </DivFlex>
           </Div>
         </DivFlex>

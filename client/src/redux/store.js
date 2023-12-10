@@ -6,12 +6,16 @@ import storage from 'redux-persist/lib/storage'
 import thunk from 'redux-thunk'
 import { alertReducer as alert } from './reducers/alertReducer.js'
 import tokenSlice, { authReducer as auth } from './reducers/authReducer.js'
+import { postReducer as homePost } from './reducers/postReducer.js'
 import { profileReducer as profile } from './reducers/profileReducer.js'
+import { statusReducer as status } from './reducers/statusReducer.js'
 
 const rootReducer = combineReducers({
   auth,
   alert,
   profile,
+  homePost,
+  status,
   tokenState: tokenSlice
 })
 

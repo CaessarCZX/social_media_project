@@ -1,4 +1,4 @@
-import { CiSettings, CiUser } from 'react-icons/ci'
+import { CiUser } from 'react-icons/ci'
 import { FaPowerOff } from 'react-icons/fa'
 import { PiHouseSimpleLight } from 'react-icons/pi'
 
@@ -18,15 +18,15 @@ export const sectionItems = [
     label: 'Perfil',
     Icon: CiUser,
     url: '/profile/'
-  },
-  {
-    id: 3,
-    name: 'Configuración',
-    shortName: 'Config.',
-    label: 'Configuración',
-    Icon: CiSettings,
-    url: '/settings'
   }
+  // {
+  //   id: 3,
+  //   name: 'Configuración',
+  //   shortName: 'Config.',
+  //   label: 'Configuración',
+  //   Icon: CiSettings,
+  //   url: '/settings'
+  // }
 ]
 
 // Be careful with 'color' attribute, it should be an empty string('') if no color available

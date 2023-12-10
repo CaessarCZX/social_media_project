@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { BsSearch } from 'react-icons/bs'
-import { IoNotificationsOutline } from 'react-icons/io5'
 import { useDispatch } from 'react-redux'
 import { IconContext } from '../../components/IconContext.jsx'
 import { useAuth } from '../../hooks/useAuth.js'
@@ -10,10 +9,10 @@ import {
   LiFlex,
   UlFlex
 } from '../../styled components/Darth-theme'
+import { DefaultLink } from '../../styled components/Darth-theme-Router-Links.js'
 import {
   HeaderContainerWrapper,
   HeaderSearchBar,
-  HeaderWrapButton,
   SearchBarPositionInnnerIcon
 } from '../../styled components/Header-theme.js'
 import { getDataApi } from '../../utils/fetchDataApi.js'
@@ -105,15 +104,18 @@ export function Header () {
             showResults && search && (<HeaderSearchResults idElement='header-search-results-container' userArray={getUsers} />)
           }
         </LiFlex>
-
+        {/* TODO: To habilite in future versions */}
+        {/*
         <LiFlex>
           <HeaderWrapButton>
             <IconContext size='1.7rem' icon={IoNotificationsOutline} />
           </HeaderWrapButton>
-        </LiFlex>
+        </LiFlex> */}
 
         <LiFlex>
-          <LogoPage />
+          <DefaultLink to='/home'>
+            <LogoPage />
+          </DefaultLink>
         </LiFlex>
 
       </UlFlex>

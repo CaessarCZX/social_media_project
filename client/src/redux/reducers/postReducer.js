@@ -1,9 +1,10 @@
+import { DeleteData, EditData } from '../actions/alertActions.js'
 import { POST_TYPES } from '../actions/postActions.js'
 
 const initialState = {
   loading: false,
   posts: [],
-  result: 0,
+  results: 0,
   page: 2
 }
 
@@ -23,19 +24,19 @@ export const postReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: action.payload.posts,
-        result: action.payload.result,
-        page: action.payload.page
+        results: action.payload.result
+        // page: action.payload.page
       }
-    // case POST_TYPES.UPDATE_POST:
-    //   return {
-    //     ...state,
-    //     posts: EditData(state.posts, action.payload._id, action.payload)
-    //   }
-    // case POST_TYPES.DELETE_POST:
-    //   return {
-    //     ...state,
-    //     posts: DeleteData(state.posts, action.payload._id)
-    //   }
+    case POST_TYPES.UPDATE_POST:
+      return {
+        ...state,
+        posts: EditData(state.posts, action.payload._id, action.payload)
+      }
+    case POST_TYPES.DELETE_POST:
+      return {
+        ...state,
+        posts: DeleteData(state.posts, action.payload._id)
+      }
     default:
       return state
   }

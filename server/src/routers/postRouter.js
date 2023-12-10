@@ -5,4 +5,10 @@ const postCtrl = require('../controllers/postCtrl')
 router.route('/post')
   .post(postCtrl.createPost)
 
+router.route('/posts')
+  .post(postCtrl.getPosts)
+
+router.route('/post/:id')
+  .patch(postCtrl.updatePost)
+
 module.exports = router

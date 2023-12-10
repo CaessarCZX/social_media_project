@@ -31,12 +31,12 @@ app.use('/api', userRouter)
 app.use('/api', postRouter)
 
 const port = process.env.PORT || 5000
-const URL = process.env.MONGO_URI
-// const DEVELOP_URL = process.env.MONGO_DEVELOPMENT_URI
+// const URL = process.env.MONGO_URI
+const DEVELOP_URL = process.env.MONGO_DEVELOPMENT_URI
 
 // Connect with MongoDB through Mongoose
 mongoose.connect(
-  URL,
+  DEVELOP_URL,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true

@@ -1,27 +1,12 @@
 import { useTheme } from '../hooks/useTheme.js'
-import { Div, DivFlex, Page, Title } from '../styled components/Darth-theme.js'
-
-import examplePostImg1 from '../assets/examplePostImg1.jpg'
-import { Post } from '../layout/Post/Post.jsx'
-
-const ExamplePost = [
-  {
-    firstname: 'Raul Esteban',
-    lastname: 'Valencia Marquez',
-    date: '15 nov 2023',
-    avatar: '',
-    postBody: 'De camino al Oxxo que me toman esta',
-    postImg: examplePostImg1
-  },
-  {
-    firstname: 'Jose',
-    lastname: 'Gomez Pitalua',
-    date: '15 nov 2023',
-    avatar: '',
-    postBody: 'Jaja el otro vato robo mi foto xd',
-    postImg: examplePostImg1
-  }
-]
+import { HomePosts } from '../layout/HomePosts/HomePosts.jsx'
+import { PostBuilder } from '../layout/PostBuilder/PostBuilder.jsx'
+import { DivFlex, Page, Subtitle, Title } from '../styled components/Darth-theme.js'
+import {
+  HomeContainerGridLayout,
+  HomeContainerInfoWrapper,
+  HomeTitle
+} from '../styled components/Home-thme.js'
 
 export function Home () {
   // Theme
@@ -33,26 +18,21 @@ export function Home () {
       $absolute
       $enableBg
     >
-      <Div $padding='14vh 0 0' $margin='0 auto' $maxWidth='700px'>
-        <Title $medium $isDark={isDark}>Publicaciones</Title>
-        <DivFlex $col $aiCenter $gap='1.5rem' $padding='0 1rem'>
-          {
-            ExamplePost.map(
-              (post) => (
-                <Post
-                  key={post.firstname}
-                  firstname={post.firstname}
-                  lastname={post.lastname}
-                  date={post.date}
-                  avatar={post.avatar}
-                  postBody={post.postBody}
-                  postImg={post.postImg}
-                />
-              )
-            )
-          }
-        </DivFlex>
-      </Div>
+      <HomeContainerInfoWrapper>
+        <HomeTitle>
+          <Title $medium $isDark={isDark}>Publicaciones</Title>
+        </HomeTitle>
+
+        <HomeContainerGridLayout>
+          <DivFlex $gap='1rem' $col $margin='1.5rem 0 0'>
+            <Subtitle $isDark={isDark}>Crea un nuevo post.</Subtitle>
+            <PostBuilder />
+          </DivFlex>
+
+          <HomePosts />
+        </HomeContainerGridLayout>
+
+      </HomeContainerInfoWrapper>
     </Page>
   )
 }

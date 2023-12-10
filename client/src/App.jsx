@@ -15,6 +15,7 @@ import { Register } from './pages/Register.jsx'
 import { Settings } from './pages/Settings.jsx'
 import { SinglePost } from './pages/SinglePost.jsx'
 import { refreshToken } from './redux/actions/authActions'
+import { getPosts } from './redux/actions/postActions.js'
 import { selectToken, setToken } from './redux/reducers/authReducer.js'
 
 function App () {
@@ -23,11 +24,18 @@ function App () {
   const token = useSelector(selectToken)
   const auth = useAuth()
 
+  // get Refresh token in App
   useEffect(() => {
     dispatch(
       refreshToken()
     )
   }, [dispatch])
+
+  // get available posts
+  useEffect(
+    () => {
+      dispatch(getPosts(auth))
+    }, [auth, dispatch])
 
   // Save or delete token in localStorage
   useEffect(
